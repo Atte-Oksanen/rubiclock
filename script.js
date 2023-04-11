@@ -16,22 +16,23 @@ window.onload = function () {
     pomtenths = document.getElementById("tenths");
     pomsecs = document.getElementById("secs");
     resetButton = document.getElementById("fiveReset");
-    statList = document.getElementById("stats");
+    statList = document.getElementById("sessionTimes");
     timer = document.getElementById("timer");
     rightHand = document.getElementById("rightHand");
     leftHand = document.getElementById("leftHand");
     
 
     document.onkeydown = (event) => {
-        var checkbox = document.getElementById("inspectionTimer");
-        if(!timerRunning){
-            timer.style.color = "red";
-            rightHand.style.backgroundColor = "red";
-            leftHand.style.backgroundColor = "red";
-
-        }
-        console.log(checkbox.checked);
         if (event.key == " ") {
+            if(event.target = statList){
+                event.preventDefault();
+            }
+            if(!timerRunning){
+                timer.style.color = "red";
+                rightHand.style.backgroundColor = "red";
+                leftHand.style.backgroundColor = "red";
+    
+            }
             clearInterval(interval);
             document.onkeyup = function () {
                 if(!timerRunning){
@@ -43,7 +44,7 @@ window.onload = function () {
                         rightHand.style.backgroundColor = "yellow";
                         leftHand.style.backgroundColor = "yellow";
 
-                    }, 500);
+                    }, 100);
                 }
                 document.onkeyup = null;
                 if (!timerRunning) {
@@ -56,6 +57,7 @@ window.onload = function () {
                         addElementToList(secs, tenthts);
                         updateSessionAverage(secs, tenthts);
                         updateLastFiveAverage();
+                        updateMedian();
                         pomsecs.innerHTML = "00";
                         pomtenths.innerHTML = "00";
                         secs = 0;
@@ -90,7 +92,7 @@ window.onload = function () {
     resetButton.onclick = (event) => {
         if (event.pointerType == "mouse") {
             gamesFromReset = 0;
-            document.getElementById("lastFiveAverage").innerHTML = "Not enough games played";
+            document.getElementById("lastFiveAverage").innerHTML = "00:00";
         }
     }
 }
@@ -98,7 +100,7 @@ window.onload = function () {
 
 function addElementToList(sec, tenth) {
     var entry = document.createElement("li");
-    entry.appendChild(document.createTextNode(parseTime(sec, tenth)));
+    entry.appendChild(document.createTextNode(parseTime(sec, tenth) + " D' U2 R2 D U2 F2 L B R F D L D2 R D2 B2 F2 R D2 F"));
     statList.insertBefore(entry, statList.firstChild);
 }
 
@@ -110,7 +112,7 @@ function updateSessionAverage(secs, tenths) {
         sessionAverage += sessionTimes[i];
     }
     sessionAverage = sessionAverage / sessionTimes.length;
-    average.innerHTML = parseTime(parseInt(sessionAverage / 100), parseInt(sessionAverage % 100));
+    average.innerHTML = parseTime(parseInt(sessionAverage / 100), parseInt(sessionAverage % 100)); 
 }
 
 function updateLastFiveAverage() {
@@ -122,8 +124,13 @@ function updateLastFiveAverage() {
             fiveAverage += sessionTimes[i];
         }
         fiveAverage = fiveAverage / 5;
-        average.innerHTML = parseTime(parseInt(fiveAverage / 100), parseInt(fiveAverage % 100));
+        average.innerHTML = parseTime(parseInt(fiveAverage /  100), parseInt(fiveAverage % 100));
     }
+}
+
+function updateMedian(){
+    var median = document.getElementById("median");
+    median.innerHTML = parseTime(parseInt(sessionTimes[parseInt(sessionTimes.length / 2)] / 100), parseInt(sessionTimes[parseInt(sessionTimes.length / 2)] % 100))
 }
 
 function parseTime(secs, tenths) {

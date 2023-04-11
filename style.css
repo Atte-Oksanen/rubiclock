@@ -1,16 +1,60 @@
-html{
+html {
   font-size: 18px;
 }
 
-.header h1{
-  font-size: 2rem;
+.header {
+  margin: 2rem;
 }
 
-#scrambleset{
+.header h1 {
+  font-size: 2rem;
+  display: inline;
+}
+
+#home {
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.rightMenu {
+  margin: 1rem;
+  float: right;
+}
+
+.rightMenu a {
+  margin-left: 2rem;
+}
+
+
+#scrambleset {
   font-size: 1.5rem;
 }
 
-.hands{
+.scramble {
+  width: 100%;
+  text-align: center;
+}
+
+.stopwatch {
+  width: 100%;
+  text-align: center;
+}
+
+.stopwatch h2 {
+  font-size: 7rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.timer {
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.hands {
   display: inline-block;
   background-color: yellow;
   height: 300px;
@@ -20,35 +64,39 @@ html{
   margin: 30px;
 }
 
-.cube{
+.cube {
   display: inline-grid;
   grid-template-areas:
-  '. top . .'
-  'left front right back'
-  '. bottom . .';
+    '. top . .'
+    'left front right back'
+    '. bottom . .';
   width: fit-content;
   border: 1px solid black;
 }
-#uplayer{
+
+#uplayer {
   grid-area: top;
 }
-#leftlayer{
+
+#leftlayer {
   grid-area: left;
 }
-#frontlayer{
+
+#frontlayer {
   grid-area: front;
 }
-#rightlayer{
+
+#rightlayer {
   grid-area: right;
 }
-#downlayer{
+
+#downlayer {
   grid-area: bottom;
 }
-#backlayer{
+
+#backlayer {
   grid-area: back;
 }
-
-
 
 .grid-container {
   display: inline-grid;
@@ -66,3 +114,56 @@ html{
   width: 2rem;
   height: 2rem;
 }
+
+.stopwatch h4{
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+#timeHeader{
+  width: 30rem;
+}
+
+#statHeader{
+  width: 20rem;
+}
+
+.infoBox{
+  position: relative;
+  width: 100%;
+}
+
+.infoBox div{
+  text-align: left;
+  display: inline-block;
+  height: 15rem;
+  overflow-x: hidden;
+  border: 1px solid black;
+}
+
+.times{
+  width: 30rem;
+}
+
+.times ul{
+  list-style: none;
+  padding: 0;
+}
+
+.times li {
+  border-top: 1px solid black;
+  padding: 0.5rem;
+}
+
+.stats{
+  overflow-y: hidden;
+  width: 20rem;
+}
+
+.stats p{
+  margin: 1rem;
+}
+
+
+
+
