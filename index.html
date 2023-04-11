@@ -11,19 +11,100 @@
 </head>
 
 <body>
-    <h1>Rubiclock</h1>
-    <h2>The world's fastest stopwatch</h2>
-    <p id="timer"><span id="secs">00</span>:<span id="tenths">00</span></p>
-    <input id="inspectionTimer" type="checkbox" value="setting">Enable WCA inspection timer (15 second)</input>
-    <p>Session stats:
-        <br>
-        Session average: <span id="sessionAverage">Not yet counted</span>
-        <br>
-        Average of last 5 solves: <span id="lastFiveAverage">Not enough games played</span>
-        <button id="fiveReset">Reset</button>
-    </p>
-    <ul id="stats"></ul>
-    <script src="script.js" type="text/javascript"></script>
+    <div class="header">
+        <h1>Rubiclock</h1>
+        <h2>The world's fastest stopwatch</h2>
+        <a href="">Home</a>
+        <a href="">Settings</a>
+        <a href="">Scoreboard</a>
+        <a href="">Info</a>
+    </div>
+    <div class="scramble">
+        <p id="scrambleset">D' U2 R2 D U2 F2 L B R F D L D2 R D2 B2 F2 R D2 F </p>
+        <div class="hands" id="leftHand">LeftHand</div>
+        <div class="cube">
+            <div id="uplayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+            <div id="leftlayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+            <div id="frontlayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+            <div id="rightlayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+            <div id="backlayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+            <div id="downlayer" class="grid-container">
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+                <div class="grid-item"></div>
+            </div>
+        </div>
+        <div class="hands" id="rightHand">RightHand</div>
+    </div>
+    <div class="timer">
+        <p id="timer"><span id="secs">00</span>:<span id="tenths">00</span></p>
+        <input id="inspectionTimer" type="checkbox" value="setting">Enable WCA inspection timer (15 second)</input>
+        <p>Session stats:
+            <br>
+            Session average: <span id="sessionAverage">Not yet counted</span>
+            <br>
+            Average of last 5 solves: <span id="lastFiveAverage">Not enough games played</span>
+            <button id="fiveReset">Reset</button>
+        </p>
+        <ul id="stats"></ul>
+        <script src="script.js" type="text/javascript"></script>
+    </div>
 </body>
 
 </html>

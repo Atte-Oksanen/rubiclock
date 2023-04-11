@@ -18,12 +18,17 @@ window.onload = function () {
     resetButton = document.getElementById("fiveReset");
     statList = document.getElementById("stats");
     timer = document.getElementById("timer");
+    rightHand = document.getElementById("rightHand");
+    leftHand = document.getElementById("leftHand");
     
 
     document.onkeydown = (event) => {
         var checkbox = document.getElementById("inspectionTimer");
         if(!timerRunning){
             timer.style.color = "red";
+            rightHand.style.backgroundColor = "red";
+            leftHand.style.backgroundColor = "red";
+
         }
         console.log(checkbox.checked);
         if (event.key == " ") {
@@ -31,8 +36,13 @@ window.onload = function () {
             document.onkeyup = function () {
                 if(!timerRunning){
                     timer.style.color = "green";
+                    rightHand.style.backgroundColor = "green";
+                    leftHand.style.backgroundColor = "green";
                     setTimeout(() => {
                         timer.style.color = "black";
+                        rightHand.style.backgroundColor = "yellow";
+                        leftHand.style.backgroundColor = "yellow";
+
                     }, 500);
                 }
                 document.onkeyup = null;
@@ -89,7 +99,7 @@ window.onload = function () {
 function addElementToList(sec, tenth) {
     var entry = document.createElement("li");
     entry.appendChild(document.createTextNode(parseTime(sec, tenth)));
-    statList.appendChild(entry);
+    statList.insertBefore(entry, statList.firstChild);
 }
 
 function updateSessionAverage(secs, tenths) {

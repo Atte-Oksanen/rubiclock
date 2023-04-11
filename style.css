@@ -1,0 +1,68 @@
+html{
+  font-size: 18px;
+}
+
+.header h1{
+  font-size: 2rem;
+}
+
+#scrambleset{
+  font-size: 1.5rem;
+}
+
+.hands{
+  display: inline-block;
+  background-color: yellow;
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 30px;
+}
+
+.cube{
+  display: inline-grid;
+  grid-template-areas:
+  '. top . .'
+  'left front right back'
+  '. bottom . .';
+  width: fit-content;
+  border: 1px solid black;
+}
+#uplayer{
+  grid-area: top;
+}
+#leftlayer{
+  grid-area: left;
+}
+#frontlayer{
+  grid-area: front;
+}
+#rightlayer{
+  grid-area: right;
+}
+#downlayer{
+  grid-area: bottom;
+}
+#backlayer{
+  grid-area: back;
+}
+
+
+
+.grid-container {
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  width: fit-content;
+  padding: 3px;
+}
+
+
+.grid-item {
+  content: "";
+  background-color: red(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
+}
