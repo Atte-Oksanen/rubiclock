@@ -8,6 +8,7 @@ var timer;
 
 
 window.onload = function () {
+    document.getElementById("settingsIcon").addEventListener("click", toggleSettings);
     var secs = 0;
     var tenthts = 0;
     var interval;
@@ -20,22 +21,22 @@ window.onload = function () {
     timer = document.getElementById("timer");
     rightHand = document.getElementById("rightHand");
     leftHand = document.getElementById("leftHand");
-    
+
 
     document.onkeydown = (event) => {
         if (event.key == " ") {
-            if(event.target = statList){
+            if (event.target = statList) {
                 event.preventDefault();
             }
-            if(!timerRunning){
+            if (!timerRunning) {
                 timer.style.color = "red";
                 rightHand.style.backgroundColor = "red";
                 leftHand.style.backgroundColor = "red";
-    
+
             }
             clearInterval(interval);
             document.onkeyup = function () {
-                if(!timerRunning){
+                if (!timerRunning) {
                     timer.style.color = "green";
                     rightHand.style.backgroundColor = "green";
                     leftHand.style.backgroundColor = "green";
@@ -112,7 +113,7 @@ function updateSessionAverage(secs, tenths) {
         sessionAverage += sessionTimes[i];
     }
     sessionAverage = sessionAverage / sessionTimes.length;
-    average.innerHTML = parseTime(parseInt(sessionAverage / 100), parseInt(sessionAverage % 100)); 
+    average.innerHTML = parseTime(parseInt(sessionAverage / 100), parseInt(sessionAverage % 100));
 }
 
 function updateLastFiveAverage() {
@@ -124,11 +125,11 @@ function updateLastFiveAverage() {
             fiveAverage += sessionTimes[i];
         }
         fiveAverage = fiveAverage / 5;
-        average.innerHTML = parseTime(parseInt(fiveAverage /  100), parseInt(fiveAverage % 100));
+        average.innerHTML = parseTime(parseInt(fiveAverage / 100), parseInt(fiveAverage % 100));
     }
 }
 
-function updateMedian(){
+function updateMedian() {
     var median = document.getElementById("median");
     median.innerHTML = parseTime(parseInt(sessionTimes[parseInt(sessionTimes.length / 2)] / 100), parseInt(sessionTimes[parseInt(sessionTimes.length / 2)] % 100))
 }
@@ -142,4 +143,14 @@ function parseTime(secs, tenths) {
     }
 
     return secs + ":" + tenths;
+}
+
+function toggleSettings() {
+    let background = document.getElementById("background");
+    let settings = document.getElementById("settings");
+    background.classList.toggle("hidden");
+    settings.classList.toggle("hidden");
+    background.addEventListener("click", toggleSettings);
+    document.getElementById("closeSettings").addEventListener("click", toggleSettings);
+    document.getElementById("cancelSettings").addEventListener("click", toggleSettings);
 }

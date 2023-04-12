@@ -2,6 +2,7 @@ html {
   font-size: 18px;
 }
 
+
 .header {
   margin: 2rem;
 }
@@ -151,7 +152,7 @@ html {
 }
 
 .times li {
-  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   padding: 0.5rem;
 }
 
@@ -164,6 +165,42 @@ html {
   margin: 1rem;
 }
 
+.background{
+  position: fixed;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  top: 0;
+  background-color: black;
+  opacity: 0.6;
+}
+.settings{
+  position: fixed;
+  display: block;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: white;
+  padding: 2rem;
+}
 
+.settings p{
+  text-align: right;
+}
 
+.settings h1{
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
+.settings label{
+  margin-right: 1rem;
+}
+
+.settings button{
+  margin: 0 0.5rem;
+}
+
+.hidden{
+  display: none;
+}
