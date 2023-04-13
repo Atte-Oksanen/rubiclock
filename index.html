@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="scramble">
-        <h3 id="scrambleset">D' U2 R2 D U2 F2 L B R F D L D2 R D2 B2 F2 R D2 F </h3>
+        <h3 id="scrambleSet">D' U2 R2 D U2 F2 L B R F D L D2 R D2 B2 F2 R D2 F </h3>
         <div class="hands timer" id="leftHand">LeftHand</div>
         <div class="cube">
             <div id="uplayer" class="grid-container">
@@ -91,52 +91,80 @@
         <div class="hands timer" id="rightHand">RightHand</div>
     </div>
     <div class="stopwatch">
-        <h2 id="timer"><span id="secs">00</span>:<span id="tenths">00</span></h2>
+        <h2 id="timer"><span id="secs">00</span>.<span id="tenths">00</span></h2>
+        <h3 id="inspTimer">Inspection Time: <span id="inspSecs">0</span>s</h3>
+        <h3></h3>
         <h4 id="timeHeader">Times</h4>
         <h4 id="statHeader">Session stats</h4>
         <div class="infoBox">
             <div class="times">
-                <ul id="sessionTimes"></ul>
+                <button id="shareButton">Share</button>
+                <ul id="sessionTimes">
+                    <li>No times set</li>
+                </ul>
             </div>
             <div class="stats">
-                <p>Session average: <span id="sessionAverage">00:00</span></p>
-                <p>Session median: <span id="median">00:00</span></p>
-                <p>Average of last 5: <span id="lastFiveAverage">00:00</span> <button id="fiveReset">Reset</button></p>
+                <p>Session average: <span id="sessionAverage">00.00</span></p>
+                <p>Session median: <span id="median">00.00</span></p>
+                <p>Average of last 5: <span id="lastFiveAverage">00.00</span> <button id="fiveReset">Reset</button></p>
+                <button id="download">Download session times</button>
             </div>
         </div>
 
-        
+
     </div>
-    <div class="background hidden" id="background"></div>
-        <div class="settings hidden" id="settings">
-            <p>
-                <button id="closeSettings">Close</button>
-            </p>
-            <h1>Settings</h1>
-            <form action="index.html">
-                <label for="theme">Theme</label>
-                <select name="theme" id="theme">
-                    <option value="light">Light</option>
-                    <option value="dark">Dark</option>
-                </select>
-                <br>
-                <br>
-                <label for="inspectionTime">Inspection time</label>
-                <input type="number" id="inspectionTime" name="inspt" min="0" max="30" value="15">
-                <br>
-                <br>
-                <label for="inspTimer">Inspection timer sound</label>
-                <input type="checkbox" id="timerSound" name="timerSound" checked>
-                <br>
-                <br>
-                <button type="submit">Submit</button>
-                <button type="reset">Defaults</button>
-                <button type="button" id="cancelSettings">Cancel</button>
-            </form>
+    <div class="background hidden" id="settingsBackground"></div>
+    <div class="popUp hidden" id="settings">
+        <div id="closeButton">
+            <button id="closeSettings">Close</button>
         </div>
+        <h1>Settings</h1>
+        <form action="index.html">
+            <label for="theme">Theme</label>
+            <select name="theme" id="theme">
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+            <br>
+            <br>
+            <label for="inspectionTime">Inspection time</label>
+            <input type="number" id="inspectionTime" name="inspt" min="0" max="30" value="15" required>
+            <br>
+            <br>
+            <label for="timerSound">Inspection timer sound</label>
+            <input type="checkbox" id="timerSound" name="timerSound" checked>
+            <br>
+            <br>
+            <button type="reset">Defaults</button>
+            <button type="button" id="cancelSettings">Cancel</button>
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+    <div class="background hidden" id="shareBackground"></div>
+
+    <div class="popUp hidden" id="share">
+        <div id="closeButton">
+            <button id="closeShare">Close</button>
+        </div>
+        <h1>Share</h1>
+        <form action="">
+            <label for="nickName">Nickname</label>
+            <br>
+            <input type="text" name="nick" id="nickName" required>
+            <br>
+            <br>
+            <label for="timeToShare">Time to post</label>
+            <br>
+            <input type="text" name="time" id="timeToShare" value="No time set" readonly>
+            <input class="hidden" id="formScramble" type="text" name="scramble" value="null">
+            <br>
+            <br>
+            <button type="button" id="cancelShare">Cancel</button>
+            <button type="submit" id="submitShare">Share</button>
+        </form>
+    </div>
 
     <script src="script.js" type="text/javascript"></script>
-    <script src="nav.js" type="text/javascript"></script>
 </body>
 
 </html>

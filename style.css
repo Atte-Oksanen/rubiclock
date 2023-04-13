@@ -122,7 +122,7 @@ html {
 }
 
 #timeHeader{
-  width: 30rem;
+  width: 35rem;
 }
 
 #statHeader{
@@ -143,12 +143,19 @@ html {
 }
 
 .times{
-  width: 30rem;
+  width: 35rem;
+  overflow-y: scroll;
+}
+
+.times button{
+  margin-left: 86%;
+  margin-top: 0.5rem;
 }
 
 .times ul{
   list-style: none;
   padding: 0;
+  margin-top: -1.7rem;
 }
 
 .times li {
@@ -165,6 +172,11 @@ html {
   margin: 1rem;
 }
 
+.stats button{
+  margin-left: 1rem;
+}
+
+
 .background{
   position: fixed;
   left: 0;
@@ -174,7 +186,7 @@ html {
   background-color: black;
   opacity: 0.6;
 }
-.settings{
+.popUp{
   position: fixed;
   display: block;
   top: 30%;
@@ -184,21 +196,22 @@ html {
   padding: 2rem;
 }
 
-.settings p{
-  text-align: right;
-}
 
-.settings h1{
+.popUp h1{
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.settings label{
+.popUp label{
   margin-right: 1rem;
 }
 
-.settings button{
+.popUp button{
   margin: 0 0.5rem;
+}
+
+#closeButton{
+  text-align: right;
 }
 
 .hidden{
