@@ -20,9 +20,10 @@ window.onload = () => {
     params = new URLSearchParams(window.location.search);
     inspTime = params.get("inspt");
 
-    if (inspTime != null) {
-        inspSecs.innerHTML = inspTime;
+    if (inspTime == null) {
+        inspTime = 15;
     }
+    inspSecs.innerHTML = inspTime;
     document.onkeydown = (event) => primeStopwatch(event);
 }
 
@@ -191,7 +192,8 @@ function operateInspTimer() {
 function runInspTimer() {
     inspTime--;
     document.getElementById("inspSecs").innerHTML = inspTime;
-    if (inspTime == 3 && params.get("timerSound") == "on") {
+    if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
+        console.log(params.get("timerSound"));
         playSound();
     }
     if (inspTime === 0) {
