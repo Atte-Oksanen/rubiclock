@@ -1,32 +1,3 @@
-html {
-  font-size: 18px;
-}
-
-
-.header {
-  margin: 2rem;
-}
-
-.header h1 {
-  font-size: 2rem;
-  display: inline;
-}
-
-#home {
-  margin: 1rem;
-  margin-left: 2rem;
-}
-
-.rightMenu {
-  margin: 1rem;
-  float: right;
-}
-
-.rightMenu a {
-  margin-left: 2rem;
-}
-
-
 #scrambleset {
   font-size: 1.5rem;
 }
@@ -116,25 +87,25 @@ html {
   height: 2rem;
 }
 
-.stopwatch h4{
+.stopwatch h4 {
   display: inline-block;
   margin-bottom: 0.5rem;
 }
 
-#timeHeader{
+#timeHeader {
   width: 35rem;
 }
 
-#statHeader{
+#statHeader {
   width: 20rem;
 }
 
-.infoBox{
+.infoBox {
   position: relative;
   width: 100%;
 }
 
-.infoBox div{
+.infoBox div {
   text-align: left;
   display: inline-block;
   height: 15rem;
@@ -142,17 +113,17 @@ html {
   border: 1px solid black;
 }
 
-.times{
+.times {
   width: 35rem;
   overflow-y: scroll;
 }
 
-.times button{
+.times button {
   margin-left: 86%;
   margin-top: 0.5rem;
 }
 
-.times ul{
+.times ul {
   list-style: none;
   padding: 0;
   margin-top: -1.7rem;
@@ -163,21 +134,21 @@ html {
   padding: 0.5rem;
 }
 
-.stats{
+.stats {
   overflow-y: hidden;
   width: 20rem;
 }
 
-.stats p{
+.stats p {
   margin: 1rem;
 }
 
-.stats button{
+.stats button {
   margin-left: 1rem;
 }
 
 
-.background{
+.background {
   position: fixed;
   left: 0;
   height: 100%;
@@ -186,7 +157,8 @@ html {
   background-color: black;
   opacity: 0.6;
 }
-.popUp{
+
+.popUp {
   position: fixed;
   display: block;
   top: 30%;
@@ -197,23 +169,23 @@ html {
 }
 
 
-.popUp h1{
+.popUp h1 {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.popUp label{
+.popUp label {
   margin-right: 1rem;
 }
 
-.popUp button{
+.popUp button {
   margin: 0 0.5rem;
 }
 
-#closeButton{
+#closeButton {
   text-align: right;
 }
 
-.hidden{
+.hidden {
   display: none;
 }

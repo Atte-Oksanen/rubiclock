@@ -1,0 +1,37 @@
+.container {
+    width: 100%;
+}
+
+.container div {
+    display: inline-block;
+    height: 70dvh;
+    overflow-x: hidden;
+    border: 1px solid black;
+    margin: 2rem;
+}
+
+.chapter {
+    overflow-y: hidden;
+    width: 15dvw;
+}
+
+.chapter h2 {
+    text-align: center;
+}
+
+.chapter li {
+    text-align: left;
+    margin: 1rem;
+}
+
+.content {
+    width: 70dvw;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+.content h3, p {
+    padding: 1rem;
+    text-align: left;
+}
+

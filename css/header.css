@@ -1,0 +1,31 @@
+html {
+  font-size: 18px;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  margin: 2rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  display: inline;
+}
+
+#home {
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.rightMenu {
+  margin: 1rem;
+  float: right;
+}
+
+.rightMenu a {
+  margin-left: 2rem;
+}

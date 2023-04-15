@@ -1,0 +1,38 @@
+.scoreboard {
+    display: block;
+    height: 70dvh;
+    width: fit-content;
+    position: relative;
+    margin-left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px solid black;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+.scoreboard h2 {
+    text-align: center;
+}
+
+.list {
+    border: 1px solid black;
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 80%;
+}
+
+.list ol {
+    padding: 0;
+    margin: 0;
+}
+
+.list ol li {
+    border-bottom: 1px solid black;
+    padding: 0;
+    list-style: none;
+}
+
+.list ol li p {
+    padding: 1.5rem 1rem 0 1rem;
+    margin: 0;
+}
