@@ -193,7 +193,6 @@ function runInspTimer() {
     inspTime--;
     document.getElementById("inspSecs").innerHTML = inspTime;
     if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
-        console.log(params.get("timerSound"));
         playSound();
     }
     if (inspTime === 0) {

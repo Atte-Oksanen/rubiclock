@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rubiclock - Home</title>
+    <link rel="icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
 </head>
@@ -11,16 +12,16 @@
 <body>
     <div class="header">
         <h1 title="Back to main page">Rubiclock</h1>
-        <a id="home" href="index.html">Home</a>
+        <a id="home" href="index.html" title="Back to main page"><img src="../resources/home.png" alt="home"></a>
         <div class="rightMenu">
-            <a id="scoreboard" href="leaderboard.html">Scoreboard</a>
-            <button id="settingsIcon">Settings</button>
-            <a id="info" href="">Info</a>
+            <a id="scoreboard" href="leaderboard.html" title="Leaderboard"><img src="../resources/podium.png" alt="scoreboard"></a>
+            <button id="settingsIcon" title="Settings"><img src="../resources/settings.png" alt=""></button>
+            <a id="info" href="info.html" title="Info"><img src="../resources/information.png" alt=""></a>
         </div>
     </div>
     <div class="scramble">
-        <h3 id="scrambleSet">D' U2 R2 D U2 F2 L B R F D L D2 R D2 B2 F2 R D2 F </h3>
-        <div class="hands timer" id="leftHand">LeftHand</div>
+        <h3 id="scrambleSet">Loading scramble set</h3>
+        <div class="hands timer" id="leftHand"><img src="../resources/hello.png" alt="activation button"></div>
         <div class="cube">
             <div id="uplayer" class="grid-container">
                 <div class="grid-item"></div>
@@ -89,17 +90,16 @@
                 <div class="grid-item"></div>
             </div>
         </div>
-        <div class="hands timer" id="rightHand">RightHand</div>
+        <div class="hands timer" id="rightHand"><img src="../resources/hello.png" alt="activation button"></div>
     </div>
     <div class="stopwatch">
         <h2 id="timer"><span id="secs">00</span>.<span id="tenths">00</span></h2>
         <h3 id="inspTimer">Inspection Time: <span id="inspSecs">0</span>s</h3>
-        <h3></h3>
         <h4 id="timeHeader">Times</h4>
         <h4 id="statHeader">Session stats</h4>
         <div class="infoBox">
             <div class="times">
-                <button id="shareButton">Share</button>
+                <button id="shareButton">Share <img src="../resources/share.png" alt=""></button>
                 <ul id="sessionTimes">
                     <li>No times set</li>
                 </ul>
@@ -117,7 +117,7 @@
     <div class="background hidden" id="settingsBackground"></div>
     <div class="popUp hidden" id="settings">
         <div id="closeButton">
-            <button id="closeSettings">Close</button>
+            <button id="closeSettings"><img src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Settings</h1>
         <form action="">
@@ -145,7 +145,7 @@
 
     <div class="popUp hidden" id="share">
         <div id="closeButton">
-            <button id="closeShare">Close</button>
+            <button id="closeShare"><img src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Share</h1>
         <form action="">

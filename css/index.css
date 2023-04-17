@@ -1,5 +1,19 @@
-#scrambleset {
+#scrambleSet {
+  display: block;
   font-size: 1.5rem;
+  border: 1px solid black;
+  width: fit-content;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+body {
+  --green: #009b48;
+  --white: #ffffff;
+  --red: #b71234;
+  --yellow: #ffd500;
+  --blue: #0046ad;
+  --orange: #ff5800;
 }
 
 .scramble {
@@ -36,6 +50,18 @@
   margin: 30px;
 }
 
+.hands img{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  vertical-align: top;
+}
+
+#rightHand {
+  transform: scaleX(-1);
+}
+
 .cube {
   display: inline-grid;
   grid-template-areas:
@@ -44,6 +70,7 @@
     '. bottom . .';
   width: fit-content;
   border: 1px solid black;
+  margin: 0 3rem;
 }
 
 #uplayer {
@@ -87,13 +114,18 @@
   height: 2rem;
 }
 
+.stopwatch h3 {
+  font-size: 1.5rem;
+}
+
 .stopwatch h4 {
+  font-size: 1.2rem;
   display: inline-block;
   margin-bottom: 0.5rem;
 }
 
 #timeHeader {
-  width: 35rem;
+  width: 37rem;
 }
 
 #statHeader {
@@ -106,6 +138,7 @@
 }
 
 .infoBox div {
+  font-size: 1.1rem;
   text-align: left;
   display: inline-block;
   height: 15rem;
@@ -113,14 +146,28 @@
   border: 1px solid black;
 }
 
+button {
+  font-size: 1rem;
+  border: none;
+  background-color: var(--buttonColor);
+  padding: 0.3rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
 .times {
-  width: 35rem;
+  width: 37rem;
   overflow-y: scroll;
 }
 
 .times button {
-  margin-left: 86%;
+  margin-left: 85%;
   margin-top: 0.5rem;
+}
+
+.times img{
+  height: 1rem;
+  vertical-align: middle;
 }
 
 .times ul {
@@ -166,6 +213,15 @@
   transform: translate(-50%, 0);
   background-color: white;
   padding: 2rem;
+  border-radius: 8px;
+}
+
+#timerSound {
+  accent-color: var(--buttonColor);
+  height: 1rem;
+  width: 1rem;
+  vertical-align: middle;
+  float: right;
 }
 
 
@@ -176,10 +232,25 @@
 
 .popUp label {
   margin-right: 1rem;
+  font-size: 1rem;
 }
 
 .popUp button {
   margin: 0 0.5rem;
+}
+
+.popUp input, select{
+  font-size: 1rem;
+  float: right;
+}
+
+.popUp img {
+  height: 1.5rem;
+  vertical-align: middle;
+}
+
+#submitShare {
+  float: right;
 }
 
 #closeButton {
