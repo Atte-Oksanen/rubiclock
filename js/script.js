@@ -11,10 +11,10 @@ let inspTime;
 
 
 window.onload = () => {
-    document.getElementById("settingsIcon").addEventListener("click", toggleSettings);
-    document.getElementById("shareButton").addEventListener("click", toggleShare);
+    document.getElementById("settingsIcon").onclick = () => toggleSettings();
+    document.getElementById("shareButton").onclick = () => toggleShare();
     document.getElementById("fiveReset").onclick = (event) => resetFive(event);
-    document.getElementById("download").addEventListener("click", downloadTimes);
+    document.getElementById("download").onclick = () => downloadTimes();
     document.getElementById("closeHelp").onclick = () => closeHelp();
     document.getElementById("leftHand").onmousedown = (event) => primeStopwatch(event);
     document.getElementById("rightHand").onmousedown = (event) => primeStopwatch(event);

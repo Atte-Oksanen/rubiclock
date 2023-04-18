@@ -1,5 +1,5 @@
 html {
-  font-size: 1.4vh;
+  font-size: clamp(12px, 1.4vh, 1000px) ;
   --buttonColor: #D9D9D9;
 }
 
