@@ -11,7 +11,7 @@
 
 <body>
     <div class="header">
-        <h1 title="Back to main page">Rubiclock</h1>
+        <h1 title="Back to main page"><a href="index.html">Rubiclock</a></h1>
         <a id="home" href="index.html" title="Back to main page"><img src="../resources/home.png" alt="home"></a>
         <div class="rightMenu">
             <a id="scoreboard" href="leaderboard.html" title="Leaderboard"><img src="../resources/podium.png" alt="scoreboard"></a>
@@ -22,6 +22,17 @@
     <div class="scramble">
         <h3 id="scrambleSet">Loading scramble set</h3>
         <div class="hands timer" id="leftHand"><img src="../resources/hello.png" alt="activation button"></div>
+        <div id="helpBox" class="help">
+            <div class="arrowUp"></div>
+            <div id="closeButton">
+                <button id="closeHelp"><img src="../resources/close.png" alt="close"></button>
+            </div>
+            <p>
+                Press on one of the hands to start the clock
+                <br>
+                (The clock can also be activated with spacebar)
+            </p>
+        </div>
         <div class="cube">
             <div id="uplayer" class="grid-container">
                 <div class="grid-item"></div>
@@ -99,7 +110,7 @@
         <h4 id="statHeader">Session stats</h4>
         <div class="infoBox">
             <div class="times">
-                <button id="shareButton">Share <img src="../resources/share.png" alt=""></button>
+                <button id="shareButton" title="Share your latest time">Share <img src="../resources/share.png" alt=""></button>
                 <ul id="sessionTimes">
                     <li>No times set</li>
                 </ul>
@@ -107,7 +118,7 @@
             <div class="stats">
                 <p>Session average: <span id="sessionAverage">00.00</span></p>
                 <p>Session median: <span id="median">00.00</span></p>
-                <p>Average of last 5: <span id="lastFiveAverage">00.00</span> <button id="fiveReset">Reset</button></p>
+                <p>Average of last 5: <span id="lastFiveAverage">00.00</span> <button id="fiveReset" title="Reset the counter">Reset</button></p>
                 <button id="download">Download session times</button>
             </div>
         </div>

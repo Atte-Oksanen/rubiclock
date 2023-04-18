@@ -16,6 +16,56 @@ body {
   --orange: #ff5800;
 }
 
+.fadeOutAnimation {
+  animation: fadeOut ease 0.1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+
+}
+
+.fadeInAnimation {
+  animation: fadeIn ease 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.fadeInBackground {
+  animation: fadeIn30 ease 0.25s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+}
+
+@keyframes fadeIn30 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.6;
+  }
+}
+
 .scramble {
   width: 100%;
   text-align: center;
@@ -43,14 +93,15 @@ body {
 .hands {
   display: inline-block;
   background-color: yellow;
-  height: 300px;
-  width: 300px;
+  height: 16rem;
+  width: 16rem;
   border-radius: 50%;
   text-align: center;
-  margin: 30px;
+  margin: 1.5rem;
+  cursor: pointer;
 }
 
-.hands img{
+.hands img {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -60,6 +111,35 @@ body {
 
 #rightHand {
   transform: scaleX(-1);
+}
+
+.help {
+  position: absolute;
+  left: 50%;
+  transform: translate(-37rem, -0.5rem);
+  padding: 0.5rem 1rem;
+  background-color: var(--buttonColor);
+  border-radius: 0.6rem;
+  width: fit-content;
+}
+
+.help img {
+  height: 0.8rem;
+}
+
+.help p {
+  margin-top: 0;
+}
+
+.arrowUp {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  width: 0;
+  height: 0;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  border-bottom: 2rem solid var(--buttonColor);
 }
 
 .cube {
@@ -101,7 +181,7 @@ body {
   display: inline-grid;
   grid-template-columns: auto auto auto;
   width: fit-content;
-  padding: 3px;
+  padding: 0.2rem;
 }
 
 
@@ -151,7 +231,7 @@ button {
   border: none;
   background-color: var(--buttonColor);
   padding: 0.3rem;
-  border-radius: 8px;
+  border-radius: 0.6rem;
   cursor: pointer;
 }
 
@@ -165,7 +245,7 @@ button {
   margin-top: 0.5rem;
 }
 
-.times img{
+.times img {
   height: 1rem;
   vertical-align: middle;
 }
@@ -213,7 +293,7 @@ button {
   transform: translate(-50%, 0);
   background-color: white;
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 0.6rem;
 }
 
 #timerSound {
@@ -239,7 +319,8 @@ button {
   margin: 0 0.5rem;
 }
 
-.popUp input, select{
+.popUp input,
+select {
   font-size: 1rem;
   float: right;
 }

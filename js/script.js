@@ -15,6 +15,9 @@ window.onload = () => {
     document.getElementById("shareButton").addEventListener("click", toggleShare);
     document.getElementById("fiveReset").onclick = (event) => resetFive(event);
     document.getElementById("download").addEventListener("click", downloadTimes);
+    document.getElementById("closeHelp").onclick = () => closeHelp();
+    document.getElementById("leftHand").onmousedown = (event) => primeStopwatch(event);
+    document.getElementById("rightHand").onmousedown = (event) => primeStopwatch(event);
     scramble();
 
     params = new URLSearchParams(window.location.search);
@@ -27,23 +30,21 @@ window.onload = () => {
     document.onkeydown = (event) => primeStopwatch(event);
 }
 
-function scramble(){
+function scramble() {
     const scrambleArray = [];
     for (let index = 0; index < 20; index++) {
         scrambleArray.push(numberToScramble());
     }
     let scrambleString = scrambleArray[0];
-    for(let index = 1; index < scrambleArray.length; index++){
-        scrambleString += " " +scrambleArray[index];
+    for (let index = 1; index < scrambleArray.length; index++) {
+        scrambleString += " " + scrambleArray[index];
     }
     scrambleStrings.push(scrambleString);
     document.getElementById("scrambleSet").innerHTML = scrambleString;
 }
 
-function numberToScramble(){
-    
+function numberToScramble() {
     let toReturn;
-    
     switch (parseInt(Math.random() * new Date().getMilliseconds() % 6)) {
         case 1:
             toReturn = "F";
@@ -65,25 +66,25 @@ function numberToScramble(){
             break;
     }
     let num = Math.random() * new Date().getMilliseconds() % 1;
-    if(num < 0.33){
+    if (num < 0.33) {
         toReturn += "2";
-    } else if(num < 0.66){
+    } else if (num < 0.66) {
         toReturn += "'"
     }
     return toReturn;
 }
 
-function downloadTimes(){
+function downloadTimes() {
     let temp = sessionTimes;
     temp.reverse();
     const link = document.createElement("a");
     let content = "Session times:";
-    for(let index = 0; index < temp.length; index++){
+    for (let index = 0; index < temp.length; index++) {
         content += "\n" + parseTime(temp[index]) + " | " + scrambleStrings[index];
     }
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = new Date().toISOString() +".txt";
+    link.download = new Date().toISOString() + ".txt";
     link.click();
     URL.revokeObjectURL(link.href);
 }
@@ -97,7 +98,8 @@ function resetFive(event) {
 }
 
 function primeStopwatch(event) {
-    if (event.code == 'Space') {
+    if (event.code == 'Space' || event.type == 'mousedown') {
+        closeHelp();
         if (event.target = document.getElementById("sessionTimes")) {
             event.preventDefault();
         }
@@ -110,8 +112,14 @@ function primeStopwatch(event) {
             document.getElementById("rightHand").style.backgroundColor = "red";
             document.getElementById("leftHand").style.backgroundColor = "red";
         }
-        document.onkeyup = function () {
+        document.onmouseup = () => {
+            document.onmouseup = null;
             document.onkeyup = null;
+            operateInspTimer();
+        }
+        document.onkeyup = () => {
+            document.onkeyup = null;
+            document.onmouseup = null;
             operateInspTimer();
         }
     }
@@ -258,7 +266,9 @@ function toggleSettings() {
     let background = document.getElementById("settingsBackground");
     let settings = document.getElementById("settings");
     background.classList.toggle("hidden");
+    background.classList.add("fadeInBackground");
     settings.classList.toggle("hidden");
+    settings.classList.add("fadeInAnimation");
     background.addEventListener("click", toggleSettings);
     document.getElementById("closeSettings").addEventListener("click", toggleSettings);
     document.getElementById("cancelSettings").addEventListener("click", toggleSettings);
@@ -279,10 +289,20 @@ function toggleShare() {
         }
     }
     background.classList.toggle("hidden");
+    background.classList.add("fadeInBackground");
     share.classList.toggle("hidden");
+    share.classList.add("fadeInAnimation");
     background.addEventListener("click", toggleShare);
     document.getElementById("closeShare").addEventListener("click", toggleShare);
     document.getElementById("cancelShare").addEventListener("click", toggleShare);
+}
+
+function closeHelp() {
+    document.getElementById("closeHelp").onclick = null;
+    document.getElementById("helpBox").classList.add("fadeOutAnimation");
+    setTimeout(() => {
+        document.getElementById("helpBox").classList.add("hidden");
+    }, 1000);
 }
 
 function playSound() {

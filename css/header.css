@@ -1,5 +1,5 @@
 html {
-  font-size: 18px;
+  font-size: 1.4vh;
   --buttonColor: #D9D9D9;
 }
 
@@ -31,12 +31,17 @@ body{
   margin: 0;
 }
 
+.header a{
+  text-decoration: none;
+  color: black;
+}
+
 .header img{
   height: 3rem;
   padding: 0.7rem;
   background-color: var(--buttonColor);
   vertical-align: top;
-  border-radius: 8px;
+  border-radius: 0.6rem;
 }
 
 #home {

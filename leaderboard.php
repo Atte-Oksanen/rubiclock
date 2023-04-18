@@ -1,3 +1,3 @@
 <?php
-    include("html/scoreboard.html");
+    include("html/leaderboard.html");
 ?>
