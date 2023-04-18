@@ -100,9 +100,10 @@ function resetFive(event) {
 function primeStopwatch(event) {
     if (event.code == 'Space' || event.type == 'mousedown') {
         closeHelp();
-        if (event.target == document.getElementById("sessionTimes")) {
-            event.preventDefault();
+        if (event.target == document.getElementById("nickName")) {
+            return;
         }
+        event.preventDefault();
         if (timerRunning) {
             clearInterval(inspInterval);
             operateTimer();
