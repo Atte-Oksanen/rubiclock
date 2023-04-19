@@ -33,7 +33,11 @@ window.onload = () => {
 function scramble() {
     const scrambleArray = [];
     for (let index = 0; index < 20; index++) {
-        scrambleArray.push(numberToScramble());
+        let newMove = numberToScramble();
+        while (scrambleArray.length > 0 && newMove[0] == scrambleArray[index - 1][0]) {
+            newMove = numberToScramble();
+        }
+        scrambleArray.push(newMove);
     }
     let scrambleString = scrambleArray[0];
     for (let index = 1; index < scrambleArray.length; index++) {
@@ -65,6 +69,7 @@ function numberToScramble() {
             toReturn = "D"
             break;
     }
+
     let num = Math.random() * new Date().getMilliseconds() % 1;
     if (num < 0.33) {
         toReturn += "2";
@@ -192,9 +197,10 @@ function operateInspTimer() {
     } else {
         timerRunning = false;
         inspTime = params.get("inspt");
-        if (inspTime != null) {
-            document.getElementById("inspSecs").innerHTML = inspTime;
+        if (inspTime == null) {
+            inspTime = 15;
         }
+        document.getElementById("inspSecs").innerHTML = inspTime;
     }
 }
 
