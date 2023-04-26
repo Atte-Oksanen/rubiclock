@@ -224,8 +224,11 @@ function operateInspTimer() {
 }
 
 function runInspTimer() {
-    document.onkeydown = () => {
-        inspTime = 1;
+    document.onkeydown = (event) => {
+        if(event.code == "Space"){
+            event.preventDefault();
+            inspTime = 1;
+        }
     }
     hands[0].onmousedown = () => {
         inspTime = 1;
