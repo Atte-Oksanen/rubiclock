@@ -209,7 +209,7 @@ function runTimer() {
 
 function operateInspTimer() {
     clearInterval(inspInterval);
-    if (!timerRunning && inspTime > 1) {
+    if (!timerRunning && inspTime > 0) {
         inspInterval = setInterval(runInspTimer, 1000);
     } else if (!timerRunning) {
         operateTimer();
@@ -224,12 +224,16 @@ function operateInspTimer() {
 }
 
 function runInspTimer() {
+    document.onkeydown = () => {
+        inspTime = 1;
+    }
     inspTime--;
     inspSecs.innerHTML = inspTime;
     if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
         playSound();
     }
     if (inspTime === 0) {
+        document.onkeydown = (event) => primeStopwatch(event);
         clearInterval(inspInterval);
         operateTimer();
     }
