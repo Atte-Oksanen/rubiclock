@@ -24,8 +24,8 @@ window.onload = () => {
     document.getElementById("fiveReset").onclick = (event) => resetFive(event);
     document.getElementById("download").onclick = () => downloadTimes();
     document.getElementById("closeHelp").onclick = () => closeHelp();
-    document.getElementById("leftHand").onmousedown = (event) => primeStopwatch(event);
-    document.getElementById("rightHand").onmousedown = (event) => primeStopwatch(event);
+    hands[0].onmousedown = (event) => primeStopwatch(event);
+    hands[1].onmousedown = (event) => primeStopwatch(event);
     scramble();
 
     if (params.get("timerSound") == "on") {
@@ -227,6 +227,12 @@ function runInspTimer() {
     document.onkeydown = () => {
         inspTime = 1;
     }
+    hands[0].onmousedown = () => {
+        inspTime = 1;
+    }
+    hands[1].onmousedown = () => {
+        inspTime = 1;
+    }
     inspTime--;
     inspSecs.innerHTML = inspTime;
     if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
@@ -234,6 +240,8 @@ function runInspTimer() {
     }
     if (inspTime === 0) {
         document.onkeydown = (event) => primeStopwatch(event);
+        hands[0].onmousedown = (event) => primeStopwatch(event);
+        hands[1].onmousedown = (event) => primeStopwatch(event);
         clearInterval(inspInterval);
         operateTimer();
     }
