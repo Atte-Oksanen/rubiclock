@@ -1,14 +1,22 @@
 const sessionTimes = [];
 const scrambleStrings = [];
+const hands = document.getElementsByClassName("hands");
+const timer = document.getElementById("timer");
+const params = new URLSearchParams(window.location.search);
+const pomtenths = document.getElementById("tenths");
+const pomsecs = document.getElementById("secs");
+const inspSecs = document.getElementById("inspSecs");
+let inspTime = params.get("inspt");
 let gamesFromReset = 0;
 let timerRunning = false;
 let tenths = 0;
 let secs = 0;
 let timerInterval;
 let inspInterval;
-let params;
-let inspTime;
-
+let handsYellow = "var(--handsYellow)";
+let handsRed = "var(--handsRed)";
+let handsGreen = "var(--handsGreen)";
+let timerColor = "black";
 
 window.onload = () => {
     document.getElementById("settingsIcon").onclick = () => toggleSettings();
@@ -20,14 +28,30 @@ window.onload = () => {
     document.getElementById("rightHand").onmousedown = (event) => primeStopwatch(event);
     scramble();
 
-    params = new URLSearchParams(window.location.search);
-    inspTime = params.get("inspt");
-
+    if (params.get("timerSound") == "on") {
+        document.getElementById("timerSound").checked = true;
+    } else {
+        document.getElementById("timerSound").checked = false;
+    }
+    if (params.get("theme") == "dark") {
+        changeTheme();
+    }
     if (inspTime == null) {
         inspTime = 15;
     }
+    document.getElementById("inspectionTime").value = inspTime;
     inspSecs.innerHTML = inspTime;
     document.onkeydown = (event) => primeStopwatch(event);
+}
+
+function changeTheme() {
+    document.querySelector("body").classList.add("dark");
+    document.getElementById("darkTheme").selected = "selected";
+    timerColor = "white";
+    let links = document.getElementsByTagName("a");
+    for(let n = 0; n < links.length; n++){
+        links[n].href = links[n].href + "?theme=dark";
+    }
 }
 
 function scramble() {
@@ -89,7 +113,7 @@ function downloadTimes() {
     }
     const file = new Blob([content], { type: 'text/plain' });
     link.href = URL.createObjectURL(file);
-    link.download = new Date().toISOString() + ".txt";
+    link.download = "RubiClock_" + new Date().toISOString() + ".txt";
     link.click();
     URL.revokeObjectURL(link.href);
 }
@@ -114,9 +138,9 @@ function primeStopwatch(event) {
             operateTimer();
         }
         if (!timerRunning) {
-            document.getElementById("timer").style.color = "red";
-            document.getElementById("rightHand").style.backgroundColor = "red";
-            document.getElementById("leftHand").style.backgroundColor = "red";
+            timer.style.color = handsRed;
+            hands[0].style.backgroundColor = handsRed;
+            hands[1].style.backgroundColor = handsRed;
         }
         document.onmouseup = () => {
             document.onmouseup = null;
@@ -132,18 +156,15 @@ function primeStopwatch(event) {
 }
 
 function operateTimer() {
-    const leftHand = document.getElementById("leftHand");
-    const rightHand = document.getElementById("rightHand");
-    const timer = document.getElementById("timer");
     clearInterval(timerInterval);
     if (!timerRunning) {
-        timer.style.color = "green";
-        rightHand.style.backgroundColor = "green";
-        leftHand.style.backgroundColor = "green";
+        timer.style.color = handsGreen;
+        hands[0].style.backgroundColor = handsGreen;
+        hands[1].style.backgroundColor = handsGreen;
         setTimeout(() => {
-            timer.style.color = "black";
-            rightHand.style.backgroundColor = "yellow";
-            leftHand.style.backgroundColor = "yellow";
+            timer.style.color = timerColor;
+            hands[0].style.backgroundColor = handsYellow;
+            hands[1].style.backgroundColor = handsYellow;
         }, 400);
     }
     if (!timerRunning) {
@@ -166,8 +187,6 @@ function operateTimer() {
 }
 
 function runTimer() {
-    let pomtenths = document.getElementById("tenths");
-    let pomsecs = document.getElementById("secs");
     tenths++;
     if (tenths <= 9) {
         pomtenths.innerHTML = "0" + tenths;
@@ -200,13 +219,13 @@ function operateInspTimer() {
         if (inspTime == null) {
             inspTime = 15;
         }
-        document.getElementById("inspSecs").innerHTML = inspTime;
+        inspSecs.innerHTML = inspTime;
     }
 }
 
 function runInspTimer() {
     inspTime--;
-    document.getElementById("inspSecs").innerHTML = inspTime;
+    inspSecs.innerHTML = inspTime;
     if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
         playSound();
     }

@@ -1,19 +1,55 @@
 #scrambleSet {
   display: block;
   font-size: 1.5rem;
-  border: 1px solid black;
+  border: 1px solid;
   width: fit-content;
   padding: 1rem;
   margin: 2rem auto;
 }
 
-body {
+html {
   --green: #009b48;
   --white: #ffffff;
   --red: #b71234;
   --yellow: #ffd500;
   --blue: #0046ad;
   --orange: #ff5800;
+  --handsYellow: #ffff00;
+  --handsDarkYellow: #C6C600;
+  --handsRed: #ff0000;
+  --handsDarkRed: #9B0000;
+  --handsGreen: #008000;
+  --handsDarkGreen: #004100;
+}
+
+.dark {
+  --handsYellow: #C6C600;
+  --handsRed: #9B0000;
+  --handsGreen: #004100;
+}
+
+#leftlayer {
+  background-color: var(--green);
+}
+
+#rightlayer {
+  background-color: var(--blue);
+}
+
+#uplayer {
+  background-color: var(--orange);
+}
+
+#downlayer {
+  background-color: var(--red);
+}
+
+#backlayer {
+  background-color: var(--yellow);
+}
+
+#frontlayer {
+  background-color: var(--white);
 }
 
 .fadeOutAnimation {
@@ -38,7 +74,6 @@ body {
   animation-iteration-count: 1;
   animation-fill-mode: both;
 }
-
 
 @keyframes fadeIn {
   0% {
@@ -77,9 +112,14 @@ body {
 }
 
 .stopwatch h2 {
+  text-align: left;
+  position: relative;
   font-size: 7rem;
   font-weight: normal;
   margin: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 19rem;
 }
 
 .timer {
@@ -92,9 +132,9 @@ body {
 
 .hands {
   display: inline-block;
-  background-color: yellow;
-  height: 16rem;
-  width: 16rem;
+  background-color: var(--handsYellow);
+  height: 18rem;
+  width: 18rem;
   border-radius: 50%;
   text-align: center;
   margin: 1.5rem;
@@ -116,7 +156,7 @@ body {
 .help {
   position: absolute;
   left: 50%;
-  transform: translate(-37rem, -0.5rem);
+  transform: translate(-172%, 0.5rem);
   padding: 0.5rem 1rem;
   background-color: var(--buttonColor);
   border-radius: 0.6rem;
@@ -129,6 +169,10 @@ body {
 
 .help p {
   margin-top: 0;
+}
+
+.dark .help {
+  color: black;
 }
 
 .arrowUp {
@@ -149,7 +193,7 @@ body {
     'left front right back'
     '. bottom . .';
   width: fit-content;
-  border: 1px solid black;
+  border: 1px solid;
   margin: 0 3rem;
 }
 
@@ -184,7 +228,6 @@ body {
   padding: 0.2rem;
 }
 
-
 .grid-item {
   content: "";
   background-color: red(255, 255, 255, 0.8);
@@ -205,7 +248,7 @@ body {
 }
 
 #timeHeader {
-  width: 37rem;
+  width: 40rem;
 }
 
 #statHeader {
@@ -223,7 +266,7 @@ body {
   display: inline-block;
   height: 15rem;
   overflow-x: hidden;
-  border: 1px solid black;
+  border: 1px solid;
 }
 
 button {
@@ -233,10 +276,19 @@ button {
   padding: 0.3rem;
   border-radius: 0.6rem;
   cursor: pointer;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--hoverColor);
 }
 
 .times {
-  width: 37rem;
+  width: 40rem;
   overflow-y: scroll;
 }
 
@@ -257,7 +309,7 @@ button {
 }
 
 .times li {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid;
   padding: 0.5rem;
 }
 
@@ -273,7 +325,6 @@ button {
 .stats button {
   margin-left: 1rem;
 }
-
 
 .background {
   position: fixed;
@@ -296,6 +347,10 @@ button {
   border-radius: 0.6rem;
 }
 
+.dark .popUp {
+  background-color: #26262C;
+}
+
 #timerSound {
   accent-color: var(--buttonColor);
   height: 1rem;
@@ -303,7 +358,6 @@ button {
   vertical-align: middle;
   float: right;
 }
-
 
 .popUp h1 {
   text-align: center;

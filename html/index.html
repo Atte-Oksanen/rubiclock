@@ -3,15 +3,16 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rubiclock - Home</title>
+    <title>RubiClock - Home</title>
     <link rel="icon" href="../resources/favicon.ico">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="header">
-        <h1 title="Back to main page"><a href="index.html">Rubiclock</a></h1>
+        <h1 title="Back to main page"><a href="index.html">RubiClock</a></h1>
         <a id="home" href="index.html" title="Back to main page"><img src="../resources/home.png" alt="home"></a>
         <div class="rightMenu">
             <a id="scoreboard" href="leaderboard.html" title="Leaderboard"><img src="../resources/podium.png" alt="scoreboard"></a>
@@ -28,9 +29,9 @@
                 <button id="closeHelp"><img src="../resources/close.png" alt="close"></button>
             </div>
             <p>
-                Press on one of the hands to start the clock
+                Press on one of the hands to start the clock!
                 <br>
-                (The clock can also be activated with spacebar)
+                (You can also use spacebar)
             </p>
         </div>
         <div class="cube">
@@ -135,7 +136,7 @@
             <label for="theme">Theme</label>
             <select name="theme" id="theme">
                 <option value="light">Light</option>
-                <option value="dark">Dark</option>
+                <option value="dark" id="darkTheme">Dark</option>
             </select>
             <br>
             <br>
@@ -144,7 +145,7 @@
             <br>
             <br>
             <label for="timerSound">Inspection timer sound</label>
-            <input type="checkbox" id="timerSound" name="timerSound" checked>
+            <input type="checkbox" id="timerSound" name="timerSound">
             <br>
             <br>
             <button type="reset">Defaults</button>
@@ -159,7 +160,7 @@
             <button id="closeShare"><img src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Share</h1>
-        <form action="">
+        <form action="leaderboard.html">
             <label for="nickName">Nickname</label>
             <br>
             <input type="text" name="nick" id="nickName" required>
