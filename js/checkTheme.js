@@ -4,7 +4,7 @@ window.onload = () => {
         document.querySelector("body").classList.add("dark");
         let links = document.getElementsByTagName("a");
         for(let n = 0; n < links.length; n++){
-            if(!links[n].href.includes("#")){
+            if(!links[n].href.includes("#") && !links[n].href.includes("https")){
                 links[n].href = links[n].href + "?theme=dark";
             }
         }

@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .container {
     width: 100%;
 }
@@ -19,9 +23,30 @@
     text-align: center;
 }
 
+.chapter ul {
+    padding: 0;
+}
+
 .chapter li {
+    width: 100%;
     text-align: left;
-    margin: 1rem;
+    list-style: none;
+    transition: 0.2s;
+}
+
+.chapter li a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    padding: 1rem;
+    color: inherit;
+}
+
+.dark .license a {
+    color: #4949FC;
+}
+.chapter li:hover {
+    background-color: var(--buttonColor);
 }
 
 .content {
