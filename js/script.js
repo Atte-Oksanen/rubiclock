@@ -63,12 +63,13 @@ function scramble() {
         }
         scrambleArray.push(newMove);
     }
+    scrambleStrings.push(scrambleArray);
     let scrambleString = scrambleArray[0];
     for (let index = 1; index < scrambleArray.length; index++) {
         scrambleString += " " + scrambleArray[index];
     }
-    scrambleStrings.push(scrambleString);
     document.getElementById("scrambleSet").innerHTML = scrambleString;
+    paintCube();
 }
 
 function numberToScramble() {
@@ -254,7 +255,11 @@ function addElementToList(sec, tenth) {
         statList.innerHTML = "";
     }
     let entry = document.createElement("li");
-    entry.appendChild(document.createTextNode(parseTime(sec * 100 + tenth) + " | " + scrambleStrings[scrambleStrings.length - 1]));
+    let scrambleString = scrambleStrings[scrambleStrings.length - 1][0];
+    for(let n = 1; n < scrambleStrings[scrambleStrings.length - 1].length; n++){
+        scrambleString += " " + scrambleStrings[scrambleStrings.length - 1][n];
+    }
+    entry.appendChild(document.createTextNode(parseTime(sec * 100 + tenth) + " | " + scrambleString));
     statList.insertBefore(entry, statList.firstChild);
 }
 
@@ -341,6 +346,426 @@ function closeHelp() {
     setTimeout(() => {
         document.getElementById("helpBox").classList.add("hidden");
     }, 1000);
+}
+
+function paintCube() {
+    let cube = [
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+        [
+            [1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ],
+    ];
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[0][i][j] = '--white';
+    }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[1][i][j] = '--orange';
+    }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[2][i][j] = '--green';
+    }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[3][i][j] = '--red';
+    }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[4][i][j] = '--blue';
+    }
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++)
+            cube[5][i][j] = '--yellow';
+    }
+    let scramble = ["L2", "B2","D", "R", "B'", "D", "B", "R2", "B'", "D", "R2", "B'", "L'", "B", "R2"];
+
+
+    for (let n = 0; n < scramble.length; n++) {
+        let layerSelected = scramble[n].charAt(0);
+        let directionSelected = ' ';
+        if (scramble[n].length > 1) {
+            directionSelected = scramble[n].charAt(1);
+        }
+        switch (layerSelected) {
+            case 'L':
+                if (directionSelected == "'") {
+                    cube = turnRight(cube, 0);
+                    cube = rotateCounterClockWise(cube, 1);
+
+                } else if (directionSelected == '2') {
+                    cube = turnLeft(cube, 0);
+                    cube = turnLeft(cube, 0);
+                    cube = rotateHalf(cube, 1);
+                    
+                } else {
+                    cube = turnLeft(cube, 0);
+                    cube = rotateClockWise(cube, 1);
+
+                }
+                break;
+
+            case 'R':
+                if (directionSelected == "'") {
+                    cube = turnLeft(cube, 2);
+                    cube = rotateCounterClockWise(cube, 3);
+
+                } else if (directionSelected == '2') {
+                    cube = turnRight(cube, 2);
+                    cube = turnRight(cube, 2);
+                    cube = rotateHalf(cube, 3);
+                } else {
+                    cube = turnRight(cube, 2);
+                    cube = rotateClockWise(cube, 3);
+
+                }
+                break;
+
+            case 'F':
+                if (directionSelected == "'") {
+                    cube = turnBack(cube, 2);
+                    cube = rotateCounterClockWise(cube, 2);
+
+                } else if (directionSelected == '2') {
+                    cube = turnFace(cube, 2);
+                    cube = turnFace(cube, 2);
+                    cube = rotateHalf(cube, 2);
+                } else {
+                    cube = turnFace(cube, 2);
+                    cube = rotateClockWise(cube, 2);
+                }
+                break;
+
+            case 'B':
+                if (directionSelected == "'") {
+                    cube = turnFace(cube, 0);
+                    cube = rotateCounterClockWise(cube, 4);
+
+                } else if (directionSelected == '2') {
+                    cube = turnBack(cube, 0);
+                    cube = turnBack(cube, 0);
+                    cube = rotateHalf(cube, 4);
+                } else {
+                    cube = turnBack(cube, 0);
+                    cube = rotateClockWise(cube, 4);
+                }
+                break;
+
+            case 'U':
+                if (directionSelected == "'") {
+                    cube = turnDown(cube, 0);
+                    cube = rotateCounterClockWise(cube, 0);
+
+                } else if (directionSelected == '2') {
+                    cube = turnUp(cube, 0);
+                    cube = turnUp(cube, 0);
+                    cube = rotateHalf(cube, 0);
+                } else {
+                    cube = turnUp(cube, 0);
+                    cube = rotateClockWise(cube, 0);
+
+                }
+                break;
+
+            case 'D':
+                if (directionSelected == "'") {
+                    cube = turnUp(cube, 2);
+                    cube = rotateCounterClockWise(cube, 5);
+
+                } else if (directionSelected == '2') {
+                    cube = turnDown(cube, 2);
+                    cube = turnDown(cube, 2);
+                    cube = rotateHalf(cube, 5);
+                } else {
+                    cube = turnDown(cube, 2);
+                    cube = rotateClockWise(cube, 5);
+
+                }
+                break;
+
+        }
+    }
+
+    paint(cube);
+}
+
+function paint(cube) {
+    let DOMCube = document.getElementById("cube").getElementsByTagName("div");
+    let index = 0;
+    for (let i = 0; i < 6; i++) {
+        for (let j = 0; j < 3; j++) {
+            for (let k = 0; k < 3;) {
+                if (!(index % 10 == 0 || index == 0)) {
+                    DOMCube[index].style.backgroundColor = "var("+ cube[i][j][k]+")";
+                    k++;
+                }
+                index++;
+            }
+        }
+    }
+}
+
+
+/*
+ * For moves U (layer 0) and D' (layer 2)
+ * Moves the outer edges of a turning layer
+ * They way the methdon works is that it stores the first edge,
+ * then moves next side's colors to that side, and at the end 
+ * from memory the firsts.
+ * Note that forth time we don't take from next side but from the first, 
+ * because turning one layer affect four sides of the cube
+ */
+function turnUp(cube, layer) {
+    const first = [];
+
+    for (let n = 0; n < cube[1][layer].length; n++) {
+        first[n] = cube[1][layer][n];
+    }
+
+    for (let i = 1; i < 4; i++) {
+        for (let j = 0; j < 3; j++) {
+            cube[i][layer][j] = cube[i + 1][layer][j];
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[4][layer][i] = first[i];
+    }
+    return cube;
+}
+
+
+/*
+ * For moves D (2) and U' (0)
+ * Otherwise the same as turnUp but the opposite :0
+ */
+function turnDown(cube, layer) {
+    const first = [];
+
+    for (let n = 0; n < cube[4][layer].length; n++) {
+        first[n] = cube[4][layer][n];
+    }
+
+    for (let i = 4; i > 1; i--) {
+        for (let j = 0; j < 3; j++) {
+            cube[i][layer][j] = cube[i - 1][layer][j];
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[1][layer][i] = first[i];
+    }
+
+    return cube;
+}
+
+// Siirtoihin R ja L'
+// Tämä on monimutkaisempi kuin horisontaalinen koska ei voida iteroiden siirtää
+// seuraavalle
+// sivulle koska sivut eivät mene enää järjestyksessä ylä- ja alasivuille.
+// Myöskään siirrettävät värit eivät ole samalla rivillä vaan eri riveillä n:s
+// elementti
+/*
+ * For moves R (2) and L' (0)
+ * This is and the next ones are more complicated than methods turning in horizontal direction (turnUp and turnDown)
+ * because in the horizontals the layer numbers go nicely in order so we can iterate simply.
+ * Also, the colors movin are not in the same row but the n:th element of a row. 
+ * Other thing is that the numbering of tiles is mirrored e.g. in F and B sides so in some method
+ * we need a counter number based on this table:
+ * 
+ * i    2-i
+ * 
+ * 0    2    
+ * 1    1
+ * 2    0
+ * 
+ */
+function turnRight(cube, layer) {
+
+    const first = [];
+    for(let n = 0; n < 3; n++){
+        first[n] = cube[2][n][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[2][i][layer] = cube[5][i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[5][2 - i][layer] = cube[4][i][2 - layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[4][2 - i][2 - layer] = cube[0][i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[0][i][layer] = first[i];
+    }
+
+    return cube;
+}
+
+/*
+ * For moves L (0)  and R' (2)
+ */
+function turnLeft(cube, layer) {
+
+
+    const first = [];
+    for(let n = 0; n < 3; n++){
+        first[n] = cube[2][n][layer];
+    }
+
+    let counterlayer = 0;
+    if (layer == 0) {
+        counterlayer = 2;
+    } else if (layer == 2) {
+        counterlayer = 0;
+    } else {
+        counterlayer = 1;
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[2][i][layer] = cube[0][i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[0][i][layer] = cube[4][i][2 - layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[4][2 - i][2 - layer] = cube[5][i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[5][i][layer] = first[i];
+    }
+
+    return cube;
+}
+
+
+/*
+ * For moves F (2) and B' (0)
+ */
+function turnFace(cube, layer) {
+
+    const first = [];
+    for(let n = 0; n < 3; n++){
+        first[n] = cube[0][layer][n];
+    }
+
+
+    for (let i = 0; i < 3; i++) {
+        cube[0][layer][i] = cube[1][2 - i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[1][i][layer] = cube[5][2 - layer][i];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[5][2 - layer][2 - i] = cube[3][i][2 - layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[3][i][2 - layer] = first[i];
+    }
+
+    return cube;
+}
+
+/*
+ * For moves B (0) and F' (2)
+ */
+function turnBack(cube, layer) {
+
+    const first = [];
+    for(let n = 0; n < 3; n++){
+        first[n] = cube[0][layer][n];
+    }
+    console.log(first)
+    let counterlayer = 0;
+    if (layer == 0) {
+        counterlayer = 2;
+    } else if (layer == 2) {
+        counterlayer = 0;
+    } else {
+        counterlayer = 1;
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[0][layer][i] = cube[3][i][counterlayer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[3][i][counterlayer] = cube[5][counterlayer][2 - i];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[5][counterlayer][i] = cube[1][i][layer];
+    }
+
+    for (let i = 0; i < 3; i++) {
+        cube[1][i][layer] = first[2 - i];
+    }
+
+    return cube;
+}
+
+/*
+ * The next methods move the tiles on the moving side itself.
+ * The methods only need two dimensional array, part of the whole dimensionl, because they handle only one side
+ */
+
+function rotateClockWise(cube, side) {
+
+    const temp = [[], [], []];
+    for(let n = 0; n < 3; n++){
+        for(let j = 0; j < 3; j++){
+            temp[n][j] = cube[side][n][j];
+        }
+    }
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            cube[side][i][j] = temp[3 - j - 1][i];
+        }
+    }
+    return cube;
+}
+
+function rotateCounterClockWise(cube, side) {
+    for(let n = 0; n < 3; n++){
+        cube = rotateClockWise(cube,side);
+    }
+    
+    return cube;
+}
+
+function rotateHalf(cube, side) {
+    for(let n = 0; n < 2; n++){
+        cube = rotateClockWise(cube,side);
+    }
+
+    return cube;
 }
 
 function playSound() {
