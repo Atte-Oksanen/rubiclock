@@ -327,6 +327,11 @@ button:hover {
   background-color: #26262C;
 }
 
+.popUp .buttons {
+  width: 100%;
+  text-align: center;
+}
+
 #timerSound {
   accent-color: var(--buttonColor);
   height: 1rem;
@@ -360,6 +365,9 @@ select {
   vertical-align: middle;
 }
 
+#note {
+  font-size: 0.8rem;
+}
 #submitShare {
   float: right;
 }
