@@ -6,7 +6,7 @@ const params = new URLSearchParams(window.location.search);
 const pomtenths = document.getElementById("tenths");
 const pomsecs = document.getElementById("secs");
 const inspSecs = document.getElementById("inspSecs");
-let inspTime = params.get("inspt");
+let inspTime = params.get("inspt") * 100;
 let gamesFromReset = 0;
 let timerRunning = false;
 let tenths = 0;
@@ -28,25 +28,19 @@ window.onload = () => {
     hands[1].onmousedown = (event) => primeStopwatch(event);
     scramble();
 
-    if (params.get("timerSound") == "on") {
-        document.getElementById("timerSound").checked = true;
-    } else {
-        document.getElementById("timerSound").checked = false;
-    }
+    
     if (params.get("theme") == "dark") {
         changeTheme();
     }
     if (inspTime == null) {
-        inspTime = 15;
+        inspTime = 1500;
     }
-    document.getElementById("inspectionTime").value = inspTime;
-    inspSecs.innerHTML = inspTime;
+    inspSecs.innerHTML = parseInt(inspTime / 100);
     document.onkeydown = (event) => primeStopwatch(event);
 }
 
 function changeTheme() {
     document.querySelector("body").classList.add("dark");
-    document.getElementById("darkTheme").selected = "selected";
     timerColor = "white";
     let links = document.getElementsByTagName("a");
     for (let n = 0; n < links.length; n++) {
@@ -211,24 +205,29 @@ function runTimer() {
 function operateInspTimer() {
     clearInterval(inspInterval);
     if (!timerRunning && inspTime > 0) {
-        inspInterval = setInterval(runInspTimer, 1000);
+        inspInterval = setInterval(runInspTimer, 10);
     } else if (!timerRunning) {
         operateTimer();
     } else {
         timerRunning = false;
-        inspTime = params.get("inspt");
+        inspTime = params.get("inspt") * 100;
         if (inspTime == null) {
-            inspTime = 15;
+            inspTime = 1500;
         }
-        inspSecs.innerHTML = inspTime;
+        inspSecs.innerHTML = parseInt(inspTime / 100);
     }
 }
 
 function runInspTimer() {
     document.onkeydown = (event) => {
         if (event.code == "Space") {
+            timer.style.color = handsGreen;
+            hands[0].style.backgroundColor = handsGreen;
+            hands[1].style.backgroundColor = handsGreen;
             event.preventDefault();
-            inspTime = 1;
+            document.onkeyup = () => {
+                inspTime = 1;
+            }
         }
     }
     hands[0].onmousedown = () => {
@@ -238,8 +237,8 @@ function runInspTimer() {
         inspTime = 1;
     }
     inspTime--;
-    inspSecs.innerHTML = inspTime;
-    if ((inspTime == 3 || inspTime == 6) && params.has("timerSound")) {
+    inspSecs.innerHTML = parseInt(inspTime / 100);
+    if ((inspTime == 300 || inspTime == 600) && params.has("timerSound")) {
         playSound();
     }
     if (inspTime === 0) {
@@ -311,6 +310,15 @@ function parseTime(time) {
 function toggleSettings() {
     let background = document.getElementById("settingsBackground");
     let settings = document.getElementById("settings");
+    if(params.get("theme") == "dark"){
+        document.getElementById("darkTheme").selected = "selected";
+    }
+    if (params.get("timerSound") == "on") {
+        document.getElementById("timerSound").checked = true;
+    } else {
+        document.getElementById("timerSound").checked = false;
+    }
+    document.getElementById("inspectionTime").value = parseInt(inspTime / 100);
     background.classList.toggle("hidden");
     background.classList.add("fadeInBackground");
     settings.classList.toggle("hidden");
@@ -519,7 +527,7 @@ function paint(cube) {
  * For moves U (0) and D' (2)
  */
 function turnUp(cube, layer) {
-    const first = [];
+    let first = [];   
 
     for (let n = 0; n < 3; n++) {
         first[n] = cube[1][layer][n];
