@@ -565,15 +565,13 @@ function turnDown(cube, layer) {
 /*
  * For moves R (2) and L' (0)
  */
-function turnRight(cube, layer) {
-    const first = [];
-    
+function turnRight(cube, layer) {    
     for (let i = 0; i < 3; i++) {
-        first[i] = cube[2][i][layer];
+        let first = cube[2][i][layer];
         cube[2][i][layer] = cube[5][i][layer];
         cube[5][i][layer] = cube[4][2 - i][2 - layer];
         cube[4][2 - i][2 - layer] = cube[0][i][layer];
-        cube[0][i][layer] = first[i];
+        cube[0][i][layer] = first;
     }
     return cube;
 }
@@ -582,14 +580,12 @@ function turnRight(cube, layer) {
  * For moves L (0)  and R' (2)
  */
 function turnLeft(cube, layer) {
-    const first = [];
-
     for (let i = 0; i < 3; i++) {
-        first[i] = cube[2][i][layer];
+        let first = cube[2][i][layer];
         cube[2][i][layer] = cube[0][i][layer];
         cube[0][i][layer] = cube[4][2 - i][2 - layer];
         cube[4][2 - i][2 - layer] = cube[5][i][layer];
-        cube[5][i][layer] = first[i];
+        cube[5][i][layer] = first;
     }
     return cube;
 }
@@ -599,14 +595,12 @@ function turnLeft(cube, layer) {
  * For moves F (2) and B' (0)
  */
 function turnFace(cube, layer) {
-    const first = [];
-
     for (let i = 0; i < 3; i++) {
-        first[i] = cube[0][layer][i];
+        let first = cube[0][layer][i];
         cube[0][layer][i] = cube[1][2 - i][layer];
         cube[1][2 - i][layer] = cube[5][2 - layer][2 - i];
         cube[5][2 - layer][2 - i] = cube[3][i][2 - layer];
-        cube[3][i][2 - layer] = first[i];
+        cube[3][i][2 - layer] = first;
     }
     return cube;
 }
@@ -615,14 +609,12 @@ function turnFace(cube, layer) {
  * For moves B (0) and F' (2)
  */
 function turnBack(cube, layer) {
-    const first = [];
-    
     for (let i = 0; i < 3; i++) {
-        first[i] = cube[0][layer][i];
+        let first = cube[0][layer][i];
         cube[0][layer][i] = cube[3][i][2 - layer];
         cube[3][i][2 - layer] = cube[5][2 - layer][2 - i];
         cube[5][2 - layer][2 - i] = cube[1][2 - i][layer];
-        cube[1][2 - i][layer] = first[i];
+        cube[1][2 - i][layer] = first;
     }
     return cube;
 }
