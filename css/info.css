@@ -60,6 +60,11 @@ html {
     text-align: left;
 }
 
+.content hr{
+    border-color: var(--buttonColor);
+    opacity: 0.2;
+}
+
 .content li {
     list-style: circle;
 }
