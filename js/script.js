@@ -6,7 +6,7 @@ const params = new URLSearchParams(window.location.search);
 const pomtenths = document.getElementById("tenths");
 const pomsecs = document.getElementById("secs");
 const inspSecs = document.getElementById("inspSecs");
-let inspTime = params.get("inspt") * 100;
+let inspTime;
 let gamesFromReset = 0;
 let timerRunning = false;
 let tenths = 0;
@@ -17,6 +17,7 @@ let handsYellow = "var(--handsYellow)";
 let handsRed = "var(--handsRed)";
 let handsGreen = "var(--handsGreen)";
 let timerColor = "black";
+let timePenalty = false;
 
 window.onload = () => {
     document.getElementById("settingsIcon").onclick = () => toggleSettings();
@@ -24,19 +25,23 @@ window.onload = () => {
     document.getElementById("fiveReset").onclick = (event) => resetFive(event);
     document.getElementById("download").onclick = () => downloadTimes();
     document.getElementById("closeHelp").onclick = () => closeHelp();
+    document.getElementById("timePenalty").onclick = () => togglePenalty();
     hands[0].onmousedown = (event) => primeStopwatch(event);
     hands[1].onmousedown = (event) => primeStopwatch(event);
+    document.onkeydown = (event) => primeStopwatch(event);
     scramble();
 
-    
+    console.log(inspTime);
     if (params.get("theme") == "dark") {
         changeTheme();
     }
+    
+    inspTime = params.get("inspt");
     if (inspTime == null) {
-        inspTime = 1500;
+        inspTime = 15;
     }
-    inspSecs.innerHTML = parseInt(inspTime / 100);
-    document.onkeydown = (event) => primeStopwatch(event);
+    inspSecs.innerHTML = parseInt(inspTime);
+    inspTime = inspTime * 100
 }
 
 function changeTheme() {
@@ -210,11 +215,12 @@ function operateInspTimer() {
         operateTimer();
     } else {
         timerRunning = false;
-        inspTime = params.get("inspt") * 100;
+        inspTime = params.get("inspt");
         if (inspTime == null) {
-            inspTime = 1500;
+            inspTime = 15;
         }
-        inspSecs.innerHTML = parseInt(inspTime / 100);
+        inspSecs.innerHTML = parseInt(inspTime);
+        inspTime = inspTime * 100
     }
 }
 
@@ -237,7 +243,7 @@ function runInspTimer() {
         inspTime = 1;
     }
     inspTime--;
-    inspSecs.innerHTML = parseInt(inspTime / 100);
+    inspSecs.innerHTML = parseInt(inspTime / 100 + 0.5);
     if ((inspTime == 300 || inspTime == 600) && params.has("timerSound")) {
         playSound();
     }
@@ -357,6 +363,20 @@ function closeHelp() {
     setTimeout(() => {
         document.getElementById("helpBox").classList.add("hidden");
     }, 1000);
+}
+
+function togglePenalty(){
+    if(sessionTimes.length > 0){
+        if(!timePenalty){
+            timePenalty = true;
+            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1] + 200);
+            document.getElementById("timePenalty").style.backgroundColor = "var(--hoverColor)"
+        } else {
+            timePenalty = false;
+            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("timePenalty").style.backgroundColor = "var(--buttonColor)"
+        }
+    }
 }
 
 function scrambleCube(scramble) {

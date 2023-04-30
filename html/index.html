@@ -32,6 +32,8 @@
                 Press on one of the hands to start the clock!
                 <br>
                 (You can also use spacebar)
+                <br>
+                If you need more help <a href="../html/info.html">Click here</a>
             </p>
         </div>
         <div class="cube" id="cube">
@@ -172,7 +174,8 @@
             <label for="timeToShare">Time to post</label>
             <br>
             <input type="text" name="time" id="timeToShare" value="No time set" readonly>
-            <input class="hidden" id="formScramble" type="text" name="scramble" value="null">
+            <input id="formScramble" type="text" name="scramble" value="null" hidden>
+            <button type="button" id="timePenalty">+2</button>
             <br>
             <br>
             <button type="button" id="cancelShare">Cancel</button>
