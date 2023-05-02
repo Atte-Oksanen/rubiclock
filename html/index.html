@@ -12,12 +12,12 @@
 
 <body>
     <div class="header">
-        <h1 title="Back to main page"><a href="index.html">RubiClock</a></h1>
-        <a id="home" href="index.html" title="Back to main page"><img src="../resources/home.png" alt="home"></a>
+        <h1 title="Back to main page"><a href="index.php">RubiClock</a></h1>
+        <a id="home" href="index.php" title="Back to main page"><img src="../resources/home.png" alt="home"></a>
         <div class="rightMenu">
-            <a id="scoreboard" href="leaderboard.html" title="Leaderboard"><img src="../resources/podium.png" alt="scoreboard"></a>
+            <a id="scoreboard" href="leaderboard.php" title="Leaderboard"><img src="../resources/podium.png" alt="scoreboard"></a>
             <button id="settingsIcon" title="Settings"><img src="../resources/settings.png" alt=""></button>
-            <a id="info" href="info.html" title="Info"><img src="../resources/information.png" alt=""></a>
+            <a id="info" href="info.php" title="Info"><img src="../resources/information.png" alt=""></a>
         </div>
     </div>
     <div class="scramble">
@@ -33,7 +33,7 @@
                 <br>
                 (You can also use spacebar)
                 <br>
-                If you need more help <a href="../html/info.html">Click here</a>
+                If you need more help <a href="info.php">Click here</a>
             </p>
         </div>
         <div class="cube" id="cube">
@@ -165,7 +165,7 @@
             <button id="closeShare"><img src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Share</h1>
-        <form action="leaderboard.html">
+        <form action="leaderboard.php" method="post">
             <label for="nickName">Nickname</label>
             <br>
             <input type="text" name="nick" id="nickName" required>
@@ -183,7 +183,9 @@
         </form>
     </div>
 
-    <script src="../js/script.js" type="text/javascript"></script>
+    <script src="../js/script.js" type="module"></script>
+    <script src="../js/cubeScramble.js" type="module"></script>
+    <script src="../js/sound.js" type="module"></script>
 </body>
 
 </html>
