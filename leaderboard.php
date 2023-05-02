@@ -1,8 +1,9 @@
 <?php
-    $serverName = "localhost";
-    $username = "atteo";
-    $dbname = "atteo";
-    $password = "kX6fXFYL9Hoi2QcinJMf7Weq";
+    $creds = fopen("credentials.txt", "r");
+    $serverName = trim(fgets($creds));
+    $username = trim(fgets($creds));
+    $dbname = trim(fgets($creds));
+    $password = trim(fgets($creds));
     try {
         $conn = new PDO("mysql:host=$serverName;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
