@@ -1,3 +1,3 @@
 # RubiClock
 Repo for programming 4 course work.   
-Project is not currently hosted on any service.
+Project is currently hosted at https://atteo.bugi.blanko.fi/.
