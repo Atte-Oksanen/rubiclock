@@ -16,7 +16,7 @@
         * Lisäsimme asetuksiin huomautuksen asetusten muuttamisen vaikutuksesta istunnon sisäisiin aikoihin.
 * Tulostaulu
     * Tulosten luettavuus
-        * Lisäsimme tulostaululle elementtien väliset vaakaviivat luettavuuden parantamiseksi.
+        * Lisäsimme tulostaululle elementtien väliset viivat luettavuuden parantamiseksi.
         * Lisäsimme myös taustavärin tulostaulun kehykseen luettavuuden parantamiseksi.
 * Ohjesivu
     * Sisällysluettelo
