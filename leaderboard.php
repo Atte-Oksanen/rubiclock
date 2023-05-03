@@ -1,9 +1,9 @@
 <?php
-    $creds = fopen("credentials.txt", "r");
-    $serverName = trim(fgets($creds));
-    $username = trim(fgets($creds));
-    $dbname = trim(fgets($creds));
-    $password = trim(fgets($creds));
+    $creds = parse_ini_file("../credentials.ini");
+    $serverName = $creds["servername"];
+    $username = $creds["username"];
+    $dbname = $creds["dbname"];
+    $password = $creds["password"];
     try {
         $conn = new PDO("mysql:host=$serverName;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
@@ -24,20 +24,27 @@
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
+        die();
     }
     include("html/leaderboard.html");
 ?>
 <script>
     const data = <?php echo json_encode($array)?>;
-    let list = document.querySelector("ol");
+    let table = document.querySelector("table");
     for(let n = 0; n < Object.keys(data).length; n++){
-        if (list.innerText.includes("No times set")) {
-            list.innerHTML = "";
+        if (table.innerText.includes("No times set")) {
+            table.innerHTML = "";
         }
-        let entryContainer = document.createElement("li");
-        let entry = document.createElement("p");
-        entry.appendChild(document.createTextNode(data[n][1] + " | " + data[n][0] + " | " + data[n][2].replaceAll("*", "'").replaceAll(",", " ")));
-        entryContainer.appendChild(entry)
-        list.appendChild(entryContainer);
+        let entryContainer = document.createElement("tr");
+        let nick = document.createElement("td");
+        let time = document.createElement("td");
+        let scramble = document.createElement("td");
+        nick.appendChild(document.createTextNode(data[n][1]));
+        time.appendChild(document.createTextNode(data[n][0]));
+        scramble.appendChild(document.createTextNode(data[n][2].replaceAll("*", "'").replaceAll(",", " ")));
+        entryContainer.appendChild(nick);
+        entryContainer.appendChild(time);
+        entryContainer.appendChild(scramble);
+        table.appendChild(entryContainer);
     }
 </script>
