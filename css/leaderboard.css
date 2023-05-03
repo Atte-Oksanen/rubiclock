@@ -31,24 +31,23 @@
     background-color: #26262C;
 }
 
-.list ol {
+.list table {
     padding: 0;
     margin: 0;
     background-color: white;
 }
 
-.dark ol{
+.dark table{
     background-color: #26262C;
 }
 
 
-.list ol li {
-    border-bottom: 1px solid;
-    padding: 0;
+.list td {
+    border: 1px solid;
     list-style: none;
+    padding: 1rem;
 }
 
 .list ol li p {
-    padding: 1.5rem 1rem 0 1rem;
     margin: 0;
 }

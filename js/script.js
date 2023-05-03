@@ -1,5 +1,5 @@
-import { scrambleCube } from "./cubeScramble";
-import { playSound } from "./sound";
+import { scrambleCube } from "./cubeScramble.js";
+import { playSound } from "./sound.js";
 
 const sessionTimes = [];
 const scrambleStrings = [];
@@ -24,7 +24,6 @@ let timePenalty = false;
 
 window.onload = () => {
     document.getElementById("settingsIcon").onclick = () => toggleSettings();
-    document.getElementById("shareButton").onclick = () => toggleShare();
     document.getElementById("fiveReset").onclick = (event) => resetFive(event);
     document.getElementById("download").onclick = () => downloadTimes();
     document.getElementById("closeHelp").onclick = () => closeHelp();
@@ -175,7 +174,7 @@ function operateTimer() {
     } else {
         if (secs > 0 || tenths > 0) {
             clearInterval(timerInterval);
-            addElementToList(secs, tenths);
+            addElementToTable(secs, tenths);
             updateSessionAverage(secs, tenths);
             updateLastFiveAverage();
             updateMedian();
@@ -259,18 +258,36 @@ function runInspTimer() {
 }
 
 
-function addElementToList(sec, tenth) {
+function addElementToTable(sec, tenth) {
     let statList = document.getElementById("sessionTimes");
     if (statList.innerText.includes("No times set")) {
         statList.innerHTML = "";
     }
-    let entry = document.createElement("li");
+    if(document.getElementById("shareButton") != null){
+        document.getElementById("shareButton").remove();
+    }
+    let entryContainer = document.createElement("tr");
+    let scramble = document.createElement("td");
+    let time = document.createElement("td");
+    let shareButton = document.createElement("button");
+    shareButton.id = "shareButton";
+    shareButton.title = "Share your latest time";
+    shareButton.innerHTML = "Share";
+    let shareIcon = document.createElement("img");
+    shareIcon.src = "../resources/share.png";
+    shareButton.appendChild(shareIcon);
     let scrambleString = scrambleStrings[scrambleStrings.length - 1][0];
     for (let n = 1; n < scrambleStrings[scrambleStrings.length - 1].length; n++) {
         scrambleString += " " + scrambleStrings[scrambleStrings.length - 1][n];
     }
-    entry.appendChild(document.createTextNode(parseTime(sec * 100 + tenth) + " | " + scrambleString));
-    statList.insertBefore(entry, statList.firstChild);
+    scramble.appendChild(document.createTextNode(scrambleString));
+    scramble.appendChild(shareButton);
+    time.appendChild(document.createTextNode(parseTime(sec * 100 + tenth)));
+    entryContainer.appendChild(time);
+    entryContainer.appendChild(scramble);
+    statList.insertBefore(entryContainer, statList.firstChild);
+    document.getElementById("shareButton").onclick = () => toggleShare();
+
 }
 
 function updateSessionAverage(secs, tenths) {
@@ -369,14 +386,10 @@ function closeHelp() {
 
 function togglePenalty(){
     if(sessionTimes.length > 0){
-        if(!timePenalty){
-            timePenalty = true;
+        if(document.getElementById("timePenalty").checked == true){
             document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1] + 200);
-            document.getElementById("timePenalty").style.backgroundColor = "var(--hoverColor)"
         } else {
-            timePenalty = false;
             document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
-            document.getElementById("timePenalty").style.backgroundColor = "var(--buttonColor)"
         }
     }
 }

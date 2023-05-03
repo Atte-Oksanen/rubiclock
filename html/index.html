@@ -113,10 +113,9 @@
         <h4 id="statHeader">Session stats</h4>
         <div class="infoBox">
             <div class="times">
-                <button id="shareButton" title="Share your latest time">Share <img src="../resources/share.png" alt=""></button>
-                <ul id="sessionTimes">
-                    <li>No times set</li>
-                </ul>
+                <table id="sessionTimes">
+                    <td>No times set</td>
+                </table>
             </div>
             <div class="stats">
                 <p>Session average: <span id="sessionAverage">00.00</span></p>
@@ -175,7 +174,7 @@
             <br>
             <input type="text" name="time" id="timeToShare" value="No time set" readonly>
             <input id="formScramble" type="text" name="scramble" value="null" hidden>
-            <button type="button" id="timePenalty">+2</button>
+            <input type="checkbox" id="timePenalty">+2</input>
             <br>
             <br>
             <button type="button" id="cancelShare">Cancel</button>
@@ -184,8 +183,6 @@
     </div>
 
     <script src="../js/script.js" type="module"></script>
-    <script src="../js/cubeScramble.js" type="module"></script>
-    <script src="../js/sound.js" type="module"></script>
 </body>
 
 </html>
