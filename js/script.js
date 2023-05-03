@@ -31,12 +31,14 @@ window.onload = () => {
     hands[0].onmousedown = (event) => primeStopwatch(event);
     hands[1].onmousedown = (event) => primeStopwatch(event);
     document.onkeydown = (event) => primeStopwatch(event);
+    createCube();
     scramble();
+
 
     if (params.get("theme") == "dark") {
         changeTheme();
     }
-    
+
     inspTime = params.get("inspt");
     if (inspTime == null) {
         inspTime = 15;
@@ -54,6 +56,27 @@ function changeTheme() {
     }
 }
 
+function createCube() {
+    let cube = document.getElementById("cube");
+    cube.appendChild(createLayer("uplayer"));
+    cube.appendChild(createLayer("leftlayer"));
+    cube.appendChild(createLayer("frontlayer"));
+    cube.appendChild(createLayer("rightlayer"));
+    cube.appendChild(createLayer("backlayer"));
+    cube.appendChild(createLayer("downlayer"));
+}
+
+function createLayer(className) {
+    let layer = document.createElement("div");
+    layer.id = className;
+    layer.className = "grid-container";
+    for (let n = 0; n < 9; n++) {
+        let square = document.createElement("div");
+        square.className = "grid-item";
+        layer.appendChild(square);
+    }
+    return layer;
+}
 function scramble() {
     const scrambleArray = [];
     for (let index = 0; index < 20; index++) {
@@ -263,7 +286,7 @@ function addElementToTable(sec, tenth) {
     if (statList.innerText.includes("No times set")) {
         statList.innerHTML = "";
     }
-    if(document.getElementById("shareButton") != null){
+    if (document.getElementById("shareButton") != null) {
         document.getElementById("shareButton").remove();
     }
     let entryContainer = document.createElement("tr");
@@ -335,7 +358,7 @@ function parseTime(time) {
 function toggleSettings() {
     let background = document.getElementById("settingsBackground");
     let settings = document.getElementById("settings");
-    if(params.get("theme") == "dark"){
+    if (params.get("theme") == "dark") {
         document.getElementById("darkTheme").selected = "selected";
     }
     if (params.get("timerSound") == "on") {
@@ -384,9 +407,9 @@ function closeHelp() {
     }, 1000);
 }
 
-function togglePenalty(){
-    if(sessionTimes.length > 0){
-        if(document.getElementById("timePenalty").checked == true){
+function togglePenalty() {
+    if (sessionTimes.length > 0) {
+        if (document.getElementById("timePenalty").checked == true) {
             document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1] + 200);
         } else {
             document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
