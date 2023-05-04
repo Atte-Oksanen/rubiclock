@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     $creds = parse_ini_file("../credentials.ini");
     $serverName = $creds["servername"];
     $username = $creds["username"];
@@ -23,10 +24,14 @@
             array_push($array, $row); 
         }
     } catch (PDOException $e) {
-        echo $e->getMessage();
-        die();
+        try {
+            require("html/error.html");
+            die();
+        } catch (Error $e) {
+            die($e->getMessage());
+        }
     }
-    include("html/leaderboard.html");
+    require("html/leaderboard.html");
 ?>
 <script>
     const data = <?php echo json_encode($array)?>;
