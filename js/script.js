@@ -67,7 +67,6 @@ function clickEventDelegator(event){
             togglePenalty();
             break;
     }
-    console.log(event.target);
 }
 
 function createCube() {
