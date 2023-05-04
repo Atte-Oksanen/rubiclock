@@ -420,9 +420,10 @@ select {
     height: 1.5rem;
   }
 
-  #statHeader{
+  #statHeader {
     display: none;
   }
+
   #timeHeader {
     width: 90%;
   }
@@ -431,16 +432,24 @@ select {
     width: 90%;
   }
 
-  .popUp{
+  .stats {
+    width: 90%;
+  }
+
+  .popUp {
     width: 70%;
   }
 
-  #share{
+  #share {
     width: 60%;
   }
 
-  input[type = "checkbox"]{
+  input[type="checkbox"] {
     float: none;
+  }
+
+  input[type="text"] {
+    width: 70%;
   }
 
 }
