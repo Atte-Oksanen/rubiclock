@@ -17,7 +17,7 @@
         <div class="rightMenu">
             <a id="scoreboard" href="leaderboard.php" title="Leaderboard"><img src="../resources/podium.png"
                     alt="scoreboard"></a>
-            <button id="settingsIcon" title="Settings"><img src="../resources/settings.png" alt=""></button>
+            <button title="Settings"><img id="settingsIcon" src="../resources/settings.png" alt=""></button>
             <a id="info" href="info.php" title="Info"><img src="../resources/information.png" alt=""></a>
         </div>
     </div>
@@ -27,7 +27,7 @@
         <div id="helpBox" class="help">
             <div class="arrowUp"></div>
             <div id="closeButton">
-                <button id="closeHelp"><img src="../resources/close.png" alt="close"></button>
+                <button ><img id="closeHelp" src="../resources/close.png" alt="close"></button>
             </div>
             <p>
                 Press on one of the hands to start the clock!
@@ -62,10 +62,10 @@
 
 
     </div>
-    <div class="background hidden" id="settingsBackground"></div>
+    <div class="background hidden" id="popUpBackground"></div>
     <div class="popUp hidden" id="settings">
         <div id="closeButton">
-            <button id="closeSettings"><img src="../resources/close.png" alt="close"></button>
+            <button id="closeSettings"><img id="closeSettings" src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Settings</h1>
         <form action="">
@@ -92,11 +92,9 @@
             </div>
         </form>
     </div>
-    <div class="background hidden" id="shareBackground"></div>
-
     <div class="popUp hidden" id="share">
         <div id="closeButton">
-            <button id="closeShare"><img src="../resources/close.png" alt="close"></button>
+            <button id="closeShare"><img id="closeShare" src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Share</h1>
         <form action="leaderboard.php" method="post">
@@ -118,6 +116,8 @@
     </div>
 
     <script src="../js/script.js" type="module"></script>
+    <script src="../js/checkTheme.js"></script>
+
 </body>
 
 </html>

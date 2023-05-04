@@ -20,24 +20,14 @@ let handsYellow = "var(--handsYellow)";
 let handsRed = "var(--handsRed)";
 let handsGreen = "var(--handsGreen)";
 let timerColor = "black";
-let timePenalty = false;
 
 window.onload = () => {
-    document.getElementById("settingsIcon").onclick = () => toggleSettings();
-    document.getElementById("fiveReset").onclick = (event) => resetFive(event);
-    document.getElementById("download").onclick = () => downloadTimes();
-    document.getElementById("closeHelp").onclick = () => closeHelp();
-    document.getElementById("timePenalty").onclick = () => togglePenalty();
+    document.onclick = (event) => clickEventDelegator(event);
     hands[0].onmousedown = (event) => primeStopwatch(event);
     hands[1].onmousedown = (event) => primeStopwatch(event);
     document.onkeydown = (event) => primeStopwatch(event);
     createCube();
     scramble();
-
-
-    if (params.get("theme") == "dark") {
-        changeTheme();
-    }
 
     inspTime = params.get("inspt");
     if (inspTime == null) {
@@ -47,13 +37,37 @@ window.onload = () => {
     inspTime = inspTime * 100
 }
 
-function changeTheme() {
-    document.querySelector("body").classList.add("dark");
-    timerColor = "white";
-    let links = document.getElementsByTagName("a");
-    for (let n = 0; n < links.length; n++) {
-        links[n].href = links[n].href + "?theme=dark";
+function clickEventDelegator(event){
+    switch (event.target.id) {
+        case "settingsIcon":
+            toggleSettings();
+            break;
+        case "fiveReset":
+            resetFive(event);
+            break;
+        case "download":
+            downloadTimes();
+            break;
+        case "closeHelp":
+            closeHelp();
+            break;
+        case "shareButton":
+            toggleShare();
+            break;
+        case "closeSettings":
+            toggleSettings();
+            break;
+        case "closeShare":
+            toggleShare();
+            break;
+        case "cancelShare":
+            toggleShare();
+            break;
+        case "timePenalty":
+            togglePenalty();
+            break;
     }
+    console.log(event.target);
 }
 
 function createCube() {
@@ -283,13 +297,13 @@ function runInspTimer() {
 
 function addElementToTable(sec, tenth) {
     let statList = document.getElementById("sessionTimes");
+    let entryContainer = document.createElement("tr");
     if (statList.innerText.includes("No times set")) {
         statList.innerHTML = "";
     }
     if (document.getElementById("shareButton") != null) {
         document.getElementById("shareButton").remove();
     }
-    let entryContainer = document.createElement("tr");
     let scramble = document.createElement("td");
     let time = document.createElement("td");
     let shareButton = document.createElement("button");
@@ -298,6 +312,7 @@ function addElementToTable(sec, tenth) {
     shareButton.innerHTML = "Share";
     let shareIcon = document.createElement("img");
     shareIcon.src = "../resources/share.png";
+    shareIcon.id = "shareButton";
     shareButton.appendChild(shareIcon);
     let scrambleString = scrambleStrings[scrambleStrings.length - 1][0];
     for (let n = 1; n < scrambleStrings[scrambleStrings.length - 1].length; n++) {
@@ -309,8 +324,6 @@ function addElementToTable(sec, tenth) {
     entryContainer.appendChild(time);
     entryContainer.appendChild(scramble);
     statList.insertBefore(entryContainer, statList.firstChild);
-    document.getElementById("shareButton").onclick = () => toggleShare();
-
 }
 
 function updateSessionAverage(secs, tenths) {
@@ -356,7 +369,7 @@ function parseTime(time) {
 }
 
 function toggleSettings() {
-    let background = document.getElementById("settingsBackground");
+    let background = document.getElementById("popUpBackground");
     let settings = document.getElementById("settings");
     if (params.get("theme") == "dark") {
         document.getElementById("darkTheme").selected = "selected";
@@ -372,35 +385,23 @@ function toggleSettings() {
     settings.classList.toggle("hidden");
     settings.classList.add("fadeInAnimation");
     background.addEventListener("click", toggleSettings);
-    document.getElementById("closeSettings").addEventListener("click", toggleSettings);
-    document.getElementById("cancelSettings").addEventListener("click", toggleSettings);
 }
 
 function toggleShare() {
-    let shareButton = document.getElementById("submitShare");
-    shareButton.disabled = false;
-    let background = document.getElementById("shareBackground");
+    let background = document.getElementById("popUpBackground");
     let share = document.getElementById("share");
     if (share.classList.contains("hidden")) {
-        if (sessionTimes.length === 0) {
-            shareButton.disabled = true;
-        }
-        else {
-            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
-            document.getElementById("formScramble").value = scrambleStrings[sessionTimes.length - 1];
-        }
+        document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+        document.getElementById("formScramble").value = scrambleStrings[sessionTimes.length - 1];
     }
     background.classList.toggle("hidden");
     background.classList.add("fadeInBackground");
     share.classList.toggle("hidden");
     share.classList.add("fadeInAnimation");
     background.addEventListener("click", toggleShare);
-    document.getElementById("closeShare").addEventListener("click", toggleShare);
-    document.getElementById("cancelShare").addEventListener("click", toggleShare);
 }
 
 function closeHelp() {
-    document.getElementById("closeHelp").onclick = null;
     document.getElementById("helpBox").classList.add("fadeOutAnimation");
     setTimeout(() => {
         document.getElementById("helpBox").classList.add("hidden");
