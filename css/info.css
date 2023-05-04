@@ -45,6 +45,7 @@ html {
 .dark .license a {
     color: #4949FC;
 }
+
 .chapter li:hover {
     background-color: var(--buttonColor);
 }
@@ -55,12 +56,13 @@ html {
     scroll-behavior: smooth;
 }
 
-.content h3, p {
+.content h3,
+p {
     padding: 1rem;
     text-align: left;
 }
 
-.content hr{
+.content hr {
     border-color: var(--buttonColor);
     opacity: 0.2;
 }
@@ -69,3 +71,12 @@ html {
     list-style: circle;
 }
 
+@media only screen and (max-width: 600px) {
+    .container div {
+        display: block;
+        width: 90%;
+        margin: auto;
+        margin-top: 2rem;
+        height: fit-content;
+    }
+}

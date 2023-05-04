@@ -294,7 +294,7 @@ button:hover {
   margin-bottom: -1rem;
 }
 
-.dark .times td{
+.dark .times td {
   background-color: #26262C;
 }
 
@@ -341,7 +341,7 @@ button:hover {
   text-align: center;
 }
 
-input[type = "checkbox"] {
+input[type="checkbox"] {
   accent-color: var(--buttonColor);
   height: 1rem;
   width: 1rem;
@@ -368,7 +368,8 @@ select {
   font-size: 1rem;
 }
 
-#settings input, select {
+#settings input,
+select {
   float: right;
 }
 
@@ -380,6 +381,7 @@ select {
 #note {
   font-size: 0.8rem;
 }
+
 #submitShare {
   float: right;
 }
@@ -390,4 +392,55 @@ select {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .scramble {
+    margin: auto;
+  }
+
+  #scrambleSet {
+    font-size: 1rem;
+  }
+
+  #leftHand {
+    display: none;
+  }
+
+  .help {
+    display: none;
+  }
+
+  .cube {
+    margin: 0;
+  }
+
+  .grid-item {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  #statHeader{
+    display: none;
+  }
+  #timeHeader {
+    width: 90%;
+  }
+
+  .times {
+    width: 90%;
+  }
+
+  .popUp{
+    width: 70%;
+  }
+
+  #share{
+    width: 60%;
+  }
+
+  input[type = "checkbox"]{
+    float: none;
+  }
+
 }

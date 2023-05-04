@@ -14,6 +14,7 @@
 .scoreboard {
     background-color: var(--buttonColor);
 }
+
 .scoreboard h2 {
     text-align: center;
     color: black;
@@ -27,7 +28,7 @@
     background-color: white;
 }
 
-.dark .list{
+.dark .list {
     background-color: #26262C;
 }
 
@@ -37,7 +38,7 @@
     background-color: white;
 }
 
-.dark table{
+.dark table {
     background-color: #26262C;
 }
 
@@ -50,4 +51,12 @@
 
 .list ol li p {
     margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .scoreboard {
+        margin-top: 1rem;
+        width: 90%;
+        min-width: 0;
+    }
 }

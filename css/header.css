@@ -82,3 +82,35 @@ body {
 .rightMenu a {
   margin-left: 2rem;
 }
+
+@media only screen and (max-width: 600px){
+  .header {
+    display: block;
+    width: 100vw;
+    margin: 0;
+    padding-top: 1rem;
+    text-align: center;
+  }
+  .header a{
+    margin: 0;
+  }
+  .rightMenu button {
+    margin: 0;
+  }
+  .header h1 {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
+  #home {
+    margin: 0;
+  }
+  .header img {
+    height: 2rem;
+  }
+  .rightMenu {
+    float: none;
+    display: inline-block;
+  }
+}
