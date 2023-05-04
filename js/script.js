@@ -1,5 +1,6 @@
 import { scrambleCube } from "./cubeScramble.js";
 import { playSound } from "./sound.js";
+import { checkTheme } from "./checkTheme.js";
 
 const sessionTimes = [];
 const scrambleStrings = [];
@@ -20,6 +21,7 @@ let handsYellow = "var(--handsYellow)";
 let handsRed = "var(--handsRed)";
 let handsGreen = "var(--handsGreen)";
 let timerColor = "black";
+checkTheme();
 
 window.onload = () => {
     document.onclick = (event) => clickEventDelegator(event);

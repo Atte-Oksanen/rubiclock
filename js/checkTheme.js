@@ -1,4 +1,4 @@
-window.onload = () => {
+export function checkTheme() {
     let params = new URLSearchParams(window.location.search);
     if (params.get("theme") == "dark") {
         document.querySelector("body").classList.add("dark");
