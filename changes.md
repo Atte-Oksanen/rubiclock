@@ -22,4 +22,4 @@
     * Sisällysluettelo
         * Teimme sisällysluettelosta perinteisemmän valikon listan sijasta käytön sujuvuuden lisäämiseksi
     * Tekstisisältö
-        * Itse sisältöä ei ollut mallinnettu prototyypissä, mutta jaoimme kappaleet toisistaa vaakaviivoilla luettavuuden parantamiseksi.
+        * Itse sisältöä ei ollut mallinnettu prototyypissä, mutta jaoimme kappaleet toisistaan vaakaviivoilla luettavuuden parantamiseksi.
