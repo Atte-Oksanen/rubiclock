@@ -385,7 +385,8 @@ function toggleSettings() {
     background.classList.add("fadeInBackground");
     settings.classList.toggle("hidden");
     settings.classList.add("fadeInAnimation");
-    background.addEventListener("click", toggleSettings);
+    background.onclick = () => toggleSettings();
+
 }
 
 function toggleShare() {
@@ -399,7 +400,7 @@ function toggleShare() {
     background.classList.add("fadeInBackground");
     share.classList.toggle("hidden");
     share.classList.add("fadeInAnimation");
-    background.addEventListener("click", toggleShare);
+    background.onclick = () => toggleShare();
 }
 
 function closeHelp() {
