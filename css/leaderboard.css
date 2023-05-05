@@ -38,14 +38,23 @@
     background-color: white;
 }
 
+.list th {
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.dark .list th {
+    background-color: #26262C;
+}
+
 .dark table {
     background-color: #26262C;
 }
 
 
-.list td {
+.list td, th {
     border: 1px solid;
-    list-style: none;
     padding: 1rem;
 }
 

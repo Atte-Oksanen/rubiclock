@@ -341,10 +341,14 @@ function updateLastFiveAverage() {
     let fiveAverage = 0;
     gamesFromReset++;
     if (sessionTimes.length > 4 && gamesFromReset > 4) {
-        for (var i = sessionTimes.length - 5; i < sessionTimes.length; i++) {
-            fiveAverage += sessionTimes[i];
+        const temp = [];
+        for (let i = sessionTimes.length - 5, n = 0; i < sessionTimes.length; i++, n++) {
+            temp[n] = sessionTimes[i];
         }
-        fiveAverage = fiveAverage / 5;
+        for(let n = 1; n < temp.length - 1; n++){
+            fiveAverage += temp[n];
+        }
+        fiveAverage = fiveAverage / 3;
         document.getElementById("lastFiveAverage").innerHTML = parseTime(fiveAverage);
     }
 }
@@ -393,8 +397,15 @@ function toggleShare() {
     let background = document.getElementById("popUpBackground");
     let share = document.getElementById("share");
     if (share.classList.contains("hidden")) {
-        document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
-        document.getElementById("formScramble").value = scrambleStrings[sessionTimes.length - 1];
+        console.log(sessionTimes)
+        if(sessionTimes.length == 0){
+            document.getElementById("submitShare").disabled = true;
+        } else {
+            document.getElementById("submitShare").disabled = false;
+            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("formScramble").value = scrambleStrings[sessionTimes.length - 1];
+            document.getElementById("darkForm").value = params.get("theme");
+        }
     }
     background.classList.toggle("hidden");
     background.classList.add("fadeInBackground");

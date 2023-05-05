@@ -9,13 +9,18 @@
         $conn = new PDO("mysql:host=$serverName;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO:: ERRMODE_EXCEPTION);
         if($_SERVER["REQUEST_METHOD"] === "POST"){
+            $theme = $_POST["theme"];
             $nick = $_POST["nick"];
             $time = $_POST["time"];
             $scramble = $_POST["scramble"];
             $scramble = str_replace("'", "*", $scramble);
             $query = $conn->prepare("INSERT INTO rubiclock (nickname, time, scramble) VALUES ('$nick', $time, '$scramble')");
             $query->execute();
-            echo "<script>location.href='leaderboard.php';</script>";
+            if($theme == "dark"){
+                echo "<script>location.href='leaderboard.php?theme=dark';</script>";
+            } else{
+                echo "<script>location.href='leaderboard.php';</script>";
+            }
         }
         $query = $conn->prepare("SELECT time, nickname, scramble FROM rubiclock ORDER BY time");
         $query->execute();
@@ -31,14 +36,22 @@
             die($e->getMessage());
         }
     }
-    require("html/leaderboard.html");
+    try {
+        require("html/leaderboard.html");
+    } catch (Error $e) {
+        try {
+            require("html/error.html");
+        } catch (Error $e) {
+            echo ($e->getMessage());
+        }
+    }
 ?>
 <script>
     const data = <?php echo json_encode($array)?>;
     let table = document.querySelector("table");
     for(let n = 0; n < Object.keys(data).length; n++){
         if (table.innerText.includes("No times set")) {
-            table.innerHTML = "";
+            table.innerHTML = "<tr><th>Nickname</th><th>Time</th><th>Scramble</th></tr>";
         }
         let entryContainer = document.createElement("tr");
         let nick = document.createElement("td");
