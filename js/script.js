@@ -39,7 +39,7 @@ window.onload = () => {
     inspTime = inspTime * 100
 }
 
-function clickEventDelegator(event){
+function clickEventDelegator(event) {
     switch (event.target.id) {
         case "settingsIcon":
             toggleSettings();
@@ -259,7 +259,7 @@ function operateInspTimer() {
             inspTime = 15;
         }
         inspSecs.innerHTML = parseInt(inspTime);
-        inspTime = inspTime * 100
+        inspTime = inspTime * 100;
     }
 }
 
@@ -286,13 +286,49 @@ function runInspTimer() {
     if ((inspTime == 300 || inspTime == 600) && params.has("timerSound")) {
         playSound();
     }
-    if (inspTime === 0) {
+    if (inspTime < 10) {
+        document.onkeydown = () => {
+            document.onkeyup = null;
+            clearInterval(inspInterval);
+            setDnf();
+        }
+    }
+    if (inspTime == 0) {
         document.onkeydown = (event) => primeStopwatch(event);
         hands[0].onmousedown = (event) => primeStopwatch(event);
         hands[1].onmousedown = (event) => primeStopwatch(event);
         clearInterval(inspInterval);
         operateTimer();
     }
+}
+
+function setDnf() {
+    timer.style.color = handsRed;
+    timer.style.textAlign = "center";
+    hands[0].style.backgroundColor = handsRed;
+    hands[1].style.backgroundColor = handsRed;
+    document.getElementById("tenths").innerHTML = "";
+    document.getElementById("secs").innerHTML = "DNF";
+    document.onkeydown = null;
+    setTimeout(() => {
+        timer.style.color = timerColor;
+        timer.style.textAlign = "left";
+        hands[0].style.backgroundColor = handsYellow;
+        hands[1].style.backgroundColor = handsYellow;
+        document.getElementById("tenths").innerHTML = "00";
+        document.getElementById("secs").innerHTML = "00";
+        document.onkeydown = (event) => primeStopwatch(event);
+        hands[0].onmousedown = (event) => primeStopwatch(event);
+        hands[1].onmousedown = (event) => primeStopwatch(event);
+        timerRunning = false;
+        inspTime = params.get("inspt");
+        if (inspTime == null) {
+            inspTime = 15;
+        }
+        inspSecs.innerHTML = parseInt(inspTime);
+        inspTime = inspTime * 100;
+        scramble();
+    }, 2500);
 }
 
 
@@ -345,7 +381,7 @@ function updateLastFiveAverage() {
         for (let i = sessionTimes.length - 5, n = 0; i < sessionTimes.length; i++, n++) {
             temp[n] = sessionTimes[i];
         }
-        for(let n = 1; n < temp.length - 1; n++){
+        for (let n = 1; n < temp.length - 1; n++) {
             fiveAverage += temp[n];
         }
         fiveAverage = fiveAverage / 3;
@@ -397,8 +433,7 @@ function toggleShare() {
     let background = document.getElementById("popUpBackground");
     let share = document.getElementById("share");
     if (share.classList.contains("hidden")) {
-        console.log(sessionTimes)
-        if(sessionTimes.length == 0){
+        if (sessionTimes.length == 0) {
             document.getElementById("submitShare").disabled = true;
         } else {
             document.getElementById("submitShare").disabled = false;
