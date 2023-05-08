@@ -30,7 +30,11 @@ window.onload = () => {
     document.onkeydown = (event) => primeStopwatch(event);
     createCube();
     scramble();
-
+    
+    if(params.get("theme") == "dark"){
+        timerColor = "white";
+    }
+    
     inspTime = params.get("inspt");
     if (inspTime == null) {
         inspTime = 15;
