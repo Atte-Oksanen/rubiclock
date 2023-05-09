@@ -1,6 +1,6 @@
 .scoreboard {
     display: block;
-    height: 70dvh;
+    height: 75dvh;
     width: fit-content;
     min-width: 30rem;
     position: relative;
@@ -60,6 +60,12 @@
 
 .list ol li p {
     margin: 0;
+}
+
+button {
+    border: 1px solid;
+    margin-top: 0.5rem;
+    float: right;
 }
 
 @media only screen and (max-width: 600px) {

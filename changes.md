@@ -18,6 +18,8 @@
     * Tulosten luettavuus
         * Lisäsimme tulostaululle elementtien väliset viivat luettavuuden parantamiseksi.
         * Lisäsimme myös taustavärin tulostaulun kehykseen luettavuuden parantamiseksi.
+    * Turvallisuus
+        * Lisäsimme käyttäjille mahdollisuuden ilmoittaa mahdollisesti vahingollisesta tiedosta tulostaulullamme.
 * Ohjesivu
     * Sisällysluettelo
         * Teimme sisällysluettelosta perinteisemmän valikon listan sijasta käytön sujuvuuden lisäämiseksi

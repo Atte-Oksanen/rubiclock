@@ -249,23 +249,7 @@ html {
   border: 1px solid;
 }
 
-button {
-  font-size: 1rem;
-  border: none;
-  background-color: var(--buttonColor);
-  padding: 0.3rem;
-  border-radius: 0.6rem;
-  cursor: pointer;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-}
 
-button:hover {
-  background-color: var(--hoverColor);
-}
 
 .times {
   width: 42rem;
