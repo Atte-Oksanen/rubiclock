@@ -44,6 +44,7 @@ window.onload = () => {
 }
 
 function clickEventDelegator(event) {
+    console.log(event.target);
     switch (event.target.id) {
         case "settingsIcon":
             toggleSettings();
@@ -60,7 +61,7 @@ function clickEventDelegator(event) {
         case "shareButton":
             toggleShare();
             break;
-        case "closeSettings":
+        case "cancelSettings":
             toggleSettings();
             break;
         case "closeShare":
