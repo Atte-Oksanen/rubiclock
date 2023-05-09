@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RubiClock - Report</title>
+    <link rel="icon" href="../resources/favicon.ico">
+    <link rel="stylesheet" href="../css/header.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form action="report.php" method="post">
+        <h3>Please describe the suspected violation here</h3>
+        <textarea name="descr" id="" cols="40" rows="10"></textarea>
+        <br>
+        <button type="submit">Send report</button>
+    </form>
+    <br>
+    <br>
+    <a href="index.php">Return to main page</a>
+</body>
+<style>
+    body{
+        text-align: center;
+    }
+    form {
+        margin-top: 20vh;
+    }
+
+    textarea {
+        resize: none;
+    }
+</style>
+
+</html>
