@@ -64,6 +64,9 @@ function clickEventDelegator(event) {
         case "cancelSettings":
             toggleSettings();
             break;
+        case "closeSettings":
+            toggleSettings();
+            break;
         case "closeShare":
             toggleShare();
             break;
