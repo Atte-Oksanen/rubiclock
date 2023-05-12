@@ -397,8 +397,10 @@ function updateLastFiveAverage() {
         for (let i = sessionTimes.length - 5, n = 0; i < sessionTimes.length; i++, n++) {
             temp[n] = sessionTimes[i];
         }
+        temp.sort();
         for (let n = 1; n < temp.length - 1; n++) {
             fiveAverage += temp[n];
+            console.log(temp[n]);
         }
         fiveAverage = fiveAverage / 3;
         document.getElementById("lastFiveAverage").innerHTML = parseTime(fiveAverage);
