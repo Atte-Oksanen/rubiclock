@@ -127,7 +127,7 @@ export function scrambleCube(scramble) {
  * For moves U (0) and D' (2)
  */
 function turnUp(cube, layer) {
-    let first = [];   
+    let first = [];
 
     for (let n = 0; n < 3; n++) {
         first[n] = cube[1][layer][n];
@@ -173,7 +173,7 @@ function turnDown(cube, layer) {
 /*
  * For moves R (2) and L' (0)
  */
-function turnRight(cube, layer) {    
+function turnRight(cube, layer) {
     for (let i = 0; i < 3; i++) {
         let first = cube[2][i][layer];
         cube[2][i][layer] = cube[5][i][layer];
