@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="scramble">
-        <h3 id="scrambleSet">Loading scramble set</h3>
+        <h2 id="scrambleSet">Loading scramble set</h2>
         <div class="hands timer" id="leftHand"><img src="../resources/hello.png" alt="activation button"></div>
         <div id="helpBox" class="help">
             <div class="arrowUp"></div>
@@ -48,7 +48,7 @@
         <div class="infoBox">
             <div class="times">
                 <table id="sessionTimes">
-                    <td>No times set <button id="shareButton" title="Share your latest time">Share <img id="shareButton" src="../resources/share.png" alt=""></button></td>
+                    <td>No times set <button id="shareButton" title="Share your latest time">Share <img id="shareButtonIcon" src="../resources/share.png" alt=""></button></td>
                 </table>
             </div>
             <div class="stats">
@@ -65,7 +65,7 @@
     <div class="background hidden" id="popUpBackground"></div>
     <div class="popUp hidden" id="settings">
         <div id="closeButton">
-            <button id="closeSettings"><img id="closeSettings" src="../resources/close.png" alt="close"></button>
+            <button id="closeSettings"><img id="closeSettingsIcon" src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Settings</h1>
         <form action="">
@@ -94,7 +94,7 @@
     </div>
     <div class="popUp hidden" id="share">
         <div id="closeButton">
-            <button id="closeShare"><img id="closeShare" src="../resources/close.png" alt="close"></button>
+            <button id="closeShare"><img id="closeShareIcon" src="../resources/close.png" alt="close"></button>
         </div>
         <h1>Share</h1>
         <form action="leaderboard.php" method="post">
@@ -110,6 +110,10 @@
             <input id="darkForm" type="text" name="theme" value="null" hidden>
             <input type="checkbox" id="timePenalty">+2</input>
             <br>
+            <p><strong>Note: </strong>The provided nickname <br> will be publicly available. 
+                <br>
+                Disclosure of personal information <br> is strictly prohibited.
+            </p>
             <br>
             <button type="button" id="cancelShare">Cancel</button>
             <button type="submit" id="submitShare">Share</button>
