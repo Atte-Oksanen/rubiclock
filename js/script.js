@@ -299,7 +299,7 @@ function runInspTimer() {
     }
     inspTime--;
     inspSecs.innerHTML = parseInt(inspTime / 100 + 0.5);
-    if ((inspTime == 300 || inspTime == 600) && params.has("timerSound")) {
+    if ((inspTime == 300 || inspTime == 700)&& params.has("timerSound")) {
         playSound();
     }
     if (inspTime < 10) {
