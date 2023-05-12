@@ -30,11 +30,11 @@ window.onload = () => {
     document.onkeydown = (event) => primeStopwatch(event);
     createCube();
     scramble();
-    
-    if(params.get("theme") == "dark"){
+
+    if (params.get("theme") == "dark") {
         timerColor = "white";
     }
-    
+
     inspTime = params.get("inspt");
     if (inspTime == null) {
         inspTime = 15;
@@ -108,6 +108,7 @@ function createLayer(className) {
     }
     return layer;
 }
+
 function scramble() {
     const scrambleArray = [];
     for (let index = 0; index < 20; index++) {
@@ -172,7 +173,6 @@ function downloadTimes() {
     link.click();
     URL.revokeObjectURL(link.href);
 }
-
 
 function resetFive(event) {
     if (event.pointerType == "mouse") {
