@@ -9,12 +9,14 @@ const timer = document.getElementById("timer");
 const params = new URLSearchParams(window.location.search);
 const pomtenths = document.getElementById("tenths");
 const pomsecs = document.getElementById("secs");
+const pomminutes = document.getElementById("minutes");
 const inspSecs = document.getElementById("inspSecs");
 let inspTime;
 let gamesFromReset = 0;
 let timerRunning = false;
 let tenths = 0;
 let secs = 0;
+let minutes = 0;
 let timerInterval;
 let inspInterval;
 let handsYellow = "var(--handsYellow)";
@@ -226,7 +228,7 @@ function operateTimer() {
         timerRunning = true;
         timerInterval = setInterval(runTimer, 10);
     } else {
-        if (secs > 0 || tenths > 0) {
+        if (secs > 0 || tenths > 0 || minutes > 0) {
             clearInterval(timerInterval);
             addElementToTable(secs, tenths);
             updateSessionAverage(secs, tenths);
@@ -235,8 +237,10 @@ function operateTimer() {
             scramble();
             document.getElementById("tenths").innerHTML = "00";
             document.getElementById("secs").innerHTML = "00";
+            document.getElementById("minutes").innerHTML = "00";
             secs = 0;
             tenths = 0;
+            minutes = 0;
         }
     }
 }
@@ -258,6 +262,17 @@ function runTimer() {
         }
         else {
             pomsecs.innerHTML = secs;
+        }
+    }
+    if (secs > 59) {
+        minutes++;
+        secs = 0;
+        pomsecs.innerHTML = "0";
+        if (secs <= 9) {
+            pomminutes.innerHTML = "0" + minutes;
+        }
+        else {
+            pomminutes.innerHTML = minutes;
         }
     }
 }
