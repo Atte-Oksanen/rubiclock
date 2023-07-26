@@ -1,6 +1,7 @@
 import { scrambleCube } from "./cubeScramble.js";
 import { playSound } from "./sound.js";
 import { checkTheme } from "./checkTheme.js";
+import { parseTime } from "./parseTime.js";
 
 const sessionTimes = [];
 const scrambleStrings = [];
@@ -230,8 +231,8 @@ function operateTimer() {
     } else {
         if (secs > 0 || tenths > 0 || minutes > 0) {
             clearInterval(timerInterval);
-            addElementToTable(secs, tenths);
-            updateSessionAverage(secs, tenths);
+            addElementToTable(minutes, secs, tenths);
+            updateSessionAverage(minutes, secs, tenths);
             updateLastFiveAverage();
             updateMedian();
             scramble();
@@ -267,7 +268,7 @@ function runTimer() {
     if (secs > 59) {
         minutes++;
         secs = 0;
-        pomsecs.innerHTML = "0";
+        pomsecs.innerHTML = "00";
         if (secs <= 9) {
             pomminutes.innerHTML = "0" + minutes;
         }
@@ -363,7 +364,7 @@ function setDnf() {
 }
 
 
-function addElementToTable(sec, tenth) {
+function addElementToTable(min, sec, tenth) {
     let statList = document.getElementById("sessionTimes");
     let entryContainer = document.createElement("tr");
     if (statList.innerText.includes("No times set")) {
@@ -388,15 +389,15 @@ function addElementToTable(sec, tenth) {
     }
     scramble.appendChild(document.createTextNode(scrambleString));
     scramble.appendChild(shareButton);
-    time.appendChild(document.createTextNode(parseTime(sec * 100 + tenth)));
+    time.appendChild(document.createTextNode(parseTime(min * 6000 + sec * 100 + tenth)));
     entryContainer.appendChild(time);
     entryContainer.appendChild(scramble);
     statList.insertBefore(entryContainer, statList.firstChild);
 }
 
-function updateSessionAverage(secs, tenths) {
+function updateSessionAverage(min, secs, tenths) {
     let sessionAverage = 0;
-    sessionTimes.push(secs * 100 + tenths);
+    sessionTimes.push(min * 6000 + secs * 100 + tenths);
     for (var i = 0; i < sessionTimes.length; i++) {
         sessionAverage += sessionTimes[i];
     }
@@ -428,18 +429,7 @@ function updateMedian() {
     median.innerHTML = parseTime(temp[parseInt(temp.length / 2)]);
 }
 
-function parseTime(time) {
-    let secs = parseInt(time / 100);
-    let tenths = parseInt(time % 100);
-    if (secs < 10) {
-        secs = "0" + secs;
-    }
-    if (tenths < 10) {
-        tenths = "0" + tenths;
-    }
 
-    return secs + "." + tenths;
-}
 
 function toggleSettings() {
     let background = document.getElementById("popUpBackground");
@@ -469,7 +459,8 @@ function toggleShare() {
             document.getElementById("submitShare").disabled = true;
         } else {
             document.getElementById("submitShare").disabled = false;
-            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("timeToShow").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("timeToShare").value = sessionTimes[sessionTimes.length - 1];
             document.getElementById("formScramble").value = scrambleStrings[sessionTimes.length - 1];
             document.getElementById("darkForm").value = params.get("theme");
         }
@@ -491,9 +482,12 @@ function closeHelp() {
 function togglePenalty() {
     if (sessionTimes.length > 0) {
         if (document.getElementById("timePenalty").checked == true) {
-            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1] + 200);
+            document.getElementById("timeToShow").value = parseTime(sessionTimes[sessionTimes.length - 1] + 200);
+            document.getElementById("timeToShare").value = sessionTimes[sessionTimes.length - 1] + 200;
+
         } else {
-            document.getElementById("timeToShare").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("timeToShow").value = parseTime(sessionTimes[sessionTimes.length - 1]);
+            document.getElementById("timeToShare").value = sessionTimes[sessionTimes.length - 1];
         }
     }
 }
