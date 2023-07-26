@@ -46,7 +46,8 @@ try {
     }
 }
 ?>
-<script>
+<script type="module">
+    import {parseTime} from "./js/parseTime.js";
     const data = <?php echo json_encode($array) ?>;
     let table = document.querySelector("table");
     for (let n = 0; n < Object.keys(data).length; n++) {
@@ -58,7 +59,7 @@ try {
         let time = document.createElement("td");
         let scramble = document.createElement("td");
         nick.appendChild(document.createTextNode(data[n][1]));
-        time.appendChild(document.createTextNode(data[n][0]));
+        time.appendChild(document.createTextNode(parseTime(data[n][0])));
         scramble.appendChild(document.createTextNode(data[n][2].replaceAll("*", "'").replaceAll(",", " ")));
         entryContainer.appendChild(nick);
         entryContainer.appendChild(time);

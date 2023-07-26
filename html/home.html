@@ -41,7 +41,7 @@
         <div class="hands timer" id="rightHand"><img src="../resources/hello.png" alt="activation button"></div>
     </div>
     <div class="stopwatch">
-        <h2 id="timer"><span id="secs">00</span>.<span id="tenths">00</span></h2>
+        <h2 id="timer"><span id="minutes">00</span>:<span id="secs">00</span>.<span id="tenths">00</span></h2>
         <h3 id="inspTimer">Inspection Time: <span id="inspSecs">0</span>s</h3>
         <h4 id="timeHeader">Times</h4>
         <h4 id="statHeader">Session stats</h4>
@@ -53,9 +53,9 @@
                 </table>
             </div>
             <div class="stats">
-                <p>Session average: <span id="sessionAverage">00.00</span></p>
-                <p>Session median: <span id="median">00.00</span></p>
-                <p>Average of last 5: <span id="lastFiveAverage">00.00</span> <button id="fiveReset"
+                <p>Session average: <span id="sessionAverage">00:00.00</span></p>
+                <p>Session median: <span id="median">00:00.00</span></p>
+                <p>Average of last 5: <span id="lastFiveAverage">00:00.00</span> <button id="fiveReset"
                         title="Reset the counter">Reset</button></p>
                 <button id="download">Download session times</button>
             </div>
@@ -104,9 +104,10 @@
             <input type="text" name="nick" id="nickName" required>
             <br>
             <br>
-            <label for="timeToShare">Time to post</label>
+            <label for="timeToShow">Time to post</label>
             <br>
-            <input type="text" name="time" id="timeToShare" value="No time set" readonly>
+            <input type="text" name="timevis" id="timeToShow" value="No time set" readonly>
+            <input type="text" name="time" id="timeToShare" value="null" hidden>
             <input id="formScramble" type="text" name="scramble" value="null" hidden>
             <input id="darkForm" type="text" name="theme" value="null" hidden>
             <input type="checkbox" id="timePenalty">+2</input>
